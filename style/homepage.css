@@ -604,7 +604,8 @@
 /* ── BANNER UTAMA (Di bawah gambar melayang) ── */
 .cta-banner-new {
   position: relative;
-  border-radius: 30px;
+  border-radius: 4%;
+  margin: 40px auto 0 auto;
   padding: 120px 40px 80px 40px; /* Atas longgar agar tidak tertutup gambar promo */
   overflow: hidden;
   text-align: center;
