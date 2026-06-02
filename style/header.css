@@ -1,0 +1,48 @@
+/* ============================================================
+   DEWY BAR — HEADER CSS
+   Khusus override untuk homepage (navbar transparan di atas hero)
+   ============================================================ */
+
+/* Homepage: navbar mulai transparan, berubah putih saat scroll */
+.navbar:not(.scrolled) {
+  background: transparent;
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-bottom: none;
+}
+
+/* Warna elemen saat transparan (di atas hero gelap) */
+.navbar:not(.scrolled) .navbar__menu-link        { color: rgba(255,255,255,0.9); }
+.navbar:not(.scrolled) .navbar__menu-link:hover,
+.navbar:not(.scrolled) .navbar__menu-link.active  { color: #fff; }
+.navbar:not(.scrolled) .navbar__menu-link::after  { background: #fff; }
+.navbar:not(.scrolled) .navbar__social-circle     { background: rgba(255,255,255,0.2); color: #fff; }
+.navbar:not(.scrolled) .navbar__social-circle:hover { background: #fff; color: var(--clr-primary); }
+.navbar:not(.scrolled) .navbar__phone             { color: rgba(255,255,255,0.85); }
+.navbar:not(.scrolled) .navbar__icon-wrapper      { color: #fff; }
+.navbar:not(.scrolled) .navbar__phone-number      { color: rgba(255,255,255,0.85); }
+.navbar:not(.scrolled) .navbar__hamburger span    { background: #fff; }
+.navbar:not(.scrolled) .navbar__cart              { color: #fff; }
+.navbar:not(.scrolled) .navbar__avatar-wrapper    { border-color: rgba(255,255,255,0.8); }
+
+/* Tombol Login/SignUp saat transparan */
+.navbar:not(.scrolled) .btn-nav-auth--login {
+  border-color: #fff;
+  color: #fff;
+  background: transparent;
+}
+.navbar:not(.scrolled) .btn-nav-auth--login:hover {
+  background: #fff;
+  color: var(--clr-primary);
+}
+.navbar:not(.scrolled) .btn-nav-auth--signup {
+  background: #fff;
+  border-color: #fff;
+  color: var(--clr-primary);
+}
+.navbar:not(.scrolled) .btn-nav-auth--signup:hover {
+  background: transparent;
+  border-color: #fff;
+  color: #fff;
+}

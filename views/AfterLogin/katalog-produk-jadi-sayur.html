@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Katalog Produk Mentah — Dewy Bar</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Covered+By+Your+Grace&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../style/global.css">
+  <link rel="stylesheet" href="../../style/navbar.css">
+  <link rel="stylesheet" href="../../style/footer.css">
+  <link rel="stylesheet" href="../../style/katalog.css">
+  
+  <style>
+    /* ============================================================
+       1. NAVBAR TRANSPARAN (ANTI-OVERWRITE CSS EKSTERNAL)
+       ============================================================ */
+    .navbar {
+      position: fixed !important;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      background: transparent !important;
+      background-color: transparent !important;
+      box-shadow: none !important;
+      backdrop-filter: blur(4px) !important;
+      -webkit-backdrop-filter: blur(4px) !important;
+    }
+
+    /* Memastikan teks navbar terlihat kontras di atas hero */
+    .navbar__menu-link, .navbar__phone-number, .navbar__dropdown-name {
+      color: #ffffff !important; 
+    }
+    
+    .navbar__social-circle {
+      background: rgba(255, 255, 255, 0.2) !important;
+      color: #ffffff !important;
+    }
+
+    .navbar__hamburger span {
+      background: #ffffff !important;
+    }
+    .navbar__icon-wrapper { color: #ffffff !important; }
+    .navbar__cart { color: #ffffff !important; }
+
+    /* ============================================================
+       2. AMANKAN JARAK CARD (TETAP ADA JARAK DI KIRI-KANAN SISI WEB)
+       ============================================================ */
+    .katalog-main {
+      padding-top: 20px !important;
+      margin-top: 0 !important;
+    }
+
+    .katalog-scroll-container {
+      display: flex !important;
+      flex-wrap: nowrap !important;
+      overflow-x: auto !important;
+      gap: 16px !important; /* Jarak antar kartu */
+      
+      /* Memberikan bantalan jarak di dalam container agar kartu tidak menabrak tepi */
+      padding-left: 24px !important;  
+      padding-right: 24px !important; 
+      padding-bottom: 15px !important;
+      
+      /* Mengunci posisi 'snapping' scroll di batas kiri 24px */
+      scroll-padding-left: 24px !important; 
+      scroll-padding-right: 24px !important;
+      
+      /* Meluaskan area track melampaui padding kontainer utama */
+      margin-left: -24px !important;
+      margin-right: -24px !important;
+      scroll-behavior: smooth;
+    }
+
+    /* Hilangkan scrollbar bawaan browser yang kaku kalau dirasa mengganggu */
+    .katalog-scroll-container::-webkit-scrollbar {
+      height: 6px;
+    }
+    .katalog-scroll-container::-webkit-scrollbar-thumb {
+      background: rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+    }
+
+    product-premium-card {
+      display: block !important;
+      flex: 0 0 auto !important;
+    }
+
+    /* ============================================================
+       3. FIX JARAK ANTAR SECTION & SUB-HEADING (PADAT & RAPI)
+       ============================================================ */
+    .katalog-section {
+      margin-top: 0 !important;
+      margin-bottom: 35px !important; /* Jarak ideal antar kategori produk */
+      padding-top: 0 !important;
+      padding-bottom: 0 !important;
+    }
+
+    /* Mengganti margin-bottom var(--sp-6) yang merusak layout */
+    .katalog-section div[style*="text-align: center"] {
+      margin-bottom: 15px !important; 
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR (Transparan dengan Blur Glass Efek) -->
+<nav class="navbar" id="mainNavbar">
+  <div class="navbar__inner">
+    <a href="../../index.html" class="navbar__logo">
+      <img src="../../assets/svg/logo_dewy_bar_putih.svg.svg" alt="Dewy Bar" class="navbar__logo-img">
+    </a>
+
+    <div class="navbar__social-group">
+      <a href="https://www.twitter.com" class="navbar__social-circle" target="_blank" title="Twitter"><i class="bi bi-twitter-x"></i></a>
+      <a href="https://www.facebook.com" class="navbar__social-circle" target="_blank" title="Facebook"><i class="bi bi-facebook"></i></a>
+      <a href="https://www.linkedin.com" class="navbar__social-circle" target="_blank" title="LinkedIn"><i class="bi bi-linkedin"></i></a>
+      <a href="https://www.instagram.com" class="navbar__social-circle" target="_blank" title="Instagram"><i class="bi bi-instagram"></i></a>
+    </div>
+
+    <ul class="navbar__nav-links navbar__nav-links--static">
+      <li><a href="../../index.html" class="navbar__menu-link">Home</a></li>
+      <li><a href="../../index.html#about" class="navbar__menu-link">About</a></li>
+      <li><a href="../../index.html#contact" class="navbar__menu-link">Contact</a></li>
+    </ul>
+
+    <ul class="navbar__nav-links navbar__nav-links--features">
+      <li><a href="katalog-produk-mentah.html" class="navbar__menu-link navbar__menu-link--active">Katalog</a></li>
+      <li><a href="smart-pre-order.html" class="navbar__menu-link">Smart Order</a></li>
+      <li><a href="jejak-petani.html" class="navbar__menu-link">Jejak Petani</a></li>
+    </ul>
+
+    <div class="navbar__actions">
+      <div class="navbar__profile">
+        <div class="navbar__avatar-wrapper" id="userAvatar" onclick="toggleProfileDropdown()">
+          <img src="../../assets/img/logo_profile.img.png" alt="Profil" class="navbar__avatar">
+        </div>
+        <div class="navbar__dropdown" id="profileDropdown">
+          <div class="navbar__dropdown-name" id="userName">Pengguna</div>
+          <hr class="navbar__dropdown-divider">
+          <a href="profile-page.html" class="navbar__dropdown-item"><i class="bi bi-person"></i> Profil Saya</a>
+          <a href="keranjang.html" class="navbar__dropdown-item"><i class="bi bi-bag"></i> Keranjang</a>
+          <a href="smart-pre-order.html" class="navbar__dropdown-item"><i class="bi bi-calendar2-check"></i> Smart Order</a>
+          <hr class="navbar__dropdown-divider">
+          <a href="#" class="navbar__dropdown-item navbar__dropdown-item--danger" onclick="handleLogout()"><i class="bi bi-box-arrow-right"></i> Logout</a>
+        </div>
+      </div>
+
+      <a href="keranjang.html" class="navbar__cart" title="Keranjang">
+        <span class="navbar__icon-wrapper"><i class="bi bi-bag-fill"></i></span>
+        <span class="navbar__cart-badge" id="cartBadge" style="display:none;">0</span>
+      </a>
+
+      <div class="navbar__phone">
+        <span class="navbar__icon-wrapper"><i class="bi bi-telephone-fill"></i></span>
+        <span class="navbar__phone-number">+6287868889068</span>
+      </div>
+      
+      <button class="navbar__hamburger" id="hamburgerBtn">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="katalog-hero-clean">
+  <img src="../../assets/img/katalog-produk-sayur/hero-katalog-sayur.png" alt="Katalog Mentah Banner" class="hero-clean__img">
+</section>
+
+<!-- FEATURES -->
+<div class="katalog-features">
+  <div class="katalog-features__inner">
+    <div class="katalog-feature">
+      <div class="katalog-feature__icon-wrap">
+        <img src="../../assets/svg/katalog-paket.svg" alt="Smart Pre-Order" width="32" height="32" onerror="this.src='../../assets/images/placeholder.svg'">
+      </div>
+      <div>
+        <p class="katalog-feature__title">Smart Pre - Order</p>
+        <p class="katalog-feature__sub">Atur Jadwal Kirim</p>
+      </div>
+    </div>
+
+    <div class="katalog-feature">
+      <div class="katalog-feature__icon-wrap">
+        <img src="../../assets/svg/katalog-rumah-produk.svg" alt="Deliver Directly" width="32" height="32" onerror="this.src='../../assets/images/placeholder.svg'">
+      </div>
+      <div>
+        <p class="katalog-feature__title">Deliver Directly</p>
+        <p class="katalog-feature__sub">Gratis Ongkir Secara Kolektif</p>
+      </div>
+    </div>
+
+    <div class="katalog-feature">
+      <div class="katalog-feature__icon-wrap">
+        <img src="../../assets/svg/katalog_rumah-produksi.svg" alt="Made Freshly" width="32" height="32" onerror="this.src='../../assets/images/placeholder.svg'">
+      </div>
+      <div>
+        <p class="katalog-feature__title">Made Freshly</p>
+        <p class="katalog-feature__sub">Dibuat di Rumah Produksi</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<main class="katalog-main">
+  <div class="container">
+
+    <!-- Diperbaiki dari var(--sp-6) ke nilai flat agar konsisten rapat -->
+    <div style="margin-bottom: 15px;">
+      <button class="back-pill" onclick="history.back()"><i class="bi bi-arrow-left"></i> Back</button>
+    </div>
+
+    <!-- SECTION 1: SMOOTHIES -->
+    <section class="katalog-section">
+      <div style="text-align: center;">
+        <span class="font-covered-grace">Fresh Tropical Green Blend</span>
+        <h2 class="katalog-section-title">Choose Your Smoothies</h2>
+      </div>
+      <div class="katalog-scroll-container">
+        <product-jadi-card id="green-velvet-smoothie" name="Green Velvet Smoothie" price="17000" badge="Vitamin B6" img="../../assets/img/katalog-produk-sayur/green-velvet-smoothies.png" type="jadi"></product-jadi-card>
+        <product-jadi-card id="tropical-lettuce-cream" name="Tropical Lettuce Cream" price="13000" badge="Vitamin C" img="../../assets/img/katalog-produk-sayur/tropical-lettuce-cream.png" type="jadi"></product-jadi-card>
+        <product-jadi-card id="berry-green-boost" name="Berry-Green Boost" price="17000" badge="Vitamin C" img="../../assets/img/katalog-produk-sayur/berry-green-boost.png" type="jadi"></product-jadi-card>
+        <product-jadi-card id="avocado-lettuce-silk" name="Avocado Lettuce Silk" price="16000" badge="Vitamin E" img="../../assets/img/katalog-produk-sayur/avocado-lettuce-silk.png" type="jadi"></product-jadi-card>
+      </div>
+    </section>
+
+    <!-- SECTION 2: LETTUCE SALAD -->
+    <section class="katalog-section">
+      <div style="text-align: center;">
+        <span class="font-covered-grace">Power up with Green</span>
+        <h2 class="katalog-section-title">Choose Your Lettuce Salad</h2>
+      </div>
+      <div class="katalog-scroll-container">
+        <product-jadi-card id="malang-orchard-salad" name="Malang Orchard Salad" price="18000" badge="Vitamin C" img="../../assets/img/katalog-produk-sayur/malang-orchard-salad.png" type="jadi"></product-jadi-card>
+        <product-jadi-card id="sunset-corn-salad" name="Sunset Corn Salad" price="16000" badge="Vitamin A" img="../../assets/img/katalog-produk-sayur/sunset-corn-salad.png" type="jadi"></product-jadi-card>
+        <product-jadi-card id="protein-green-bowl" name="Protein Green Bowl" price="15000" badge="Vitamin B12" img="../../assets/img/katalog-produk-sayur/protein-green-bowl.png" type="jadi"></product-jadi-card>
+        <product-jadi-card id="crispy-sesame-salad" name="Crispy Sesame Salad" price="18000" badge="Vitamin K" img="../../assets/img/katalog-produk-sayur/crispy-sesame-salad.png" type="jadi"></product-jadi-card>
+      </div>
+    </section>
+
+    <!-- SECTION 3: SPRING ROLL -->
+    <section class="katalog-section">
+      <div style="text-align: center;">
+        <span class="font-covered-grace">Fresh Handy Veggie</span>
+        <h2 class="katalog-section-title">Choose Your Spring Roll</h2>
+      </div>
+      <div class="katalog-scroll-container">
+        <product-jadi-card id="original-dewy-roll" name="Original Dewy Roll" price="14000" badge="Vitamin A" img="../../assets/img/katalog-produk-sayur/original-dewy-roll.png" type="jadi"></product-jadi-card>
+        <product-jadi-card id="margo-lettuce-wrap" name="Margo Lettuce Wrap" price="12000" badge="Vitamin A" img="../../assets/img/katalog-produk-sayur/margo-lettuce-wrap.png" type="jadi"></product-jadi-card>
+        <product-jadi-card id="tofu-veggie-roll" name="Tofu Veggie Roll" price="12000" badge="Vitamin B1" img="../../assets/img/katalog-produk-sayur/tofu-veggie-roll.png" type="jadi"></product-jadi-card>
+        <product-jadi-card id="crunchy-peanut-roll" name="Crunchy Peanut Roll" price="18000" badge="Vitamin K" img="../../assets/img/katalog-produk-sayur/cruchy-peanut-roll.png" type="jadi"></product-jadi-card>
+      </div>
+    </section>
+  </div>
+</main>
+
+<div id="footer-container"></div>
+
+<div class="toast-notif" id="toastNotif">
+  <i class="bi bi-check-circle-fill"></i>
+  <span id="toastMsg"></span>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../../javascript/auth.js"></script>
+<script src="../../javascript/cart.js"></script>
+<script src="../../javascript/navbar.js"></script>
+<script src="../../javascript/katalog.js"></script>
+<script src="../../javascript/main.js"></script>
+
+<script>
+  if (typeof requireLogin === 'function') requireLogin();
+</script>
+</body>
+</html>

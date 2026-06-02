@@ -1,0 +1,587 @@
+/* ============================================================
+   DEWY BAR — PREMIUM KATALOG CSS (FIGMA COMPLIANT)
+   File: style/katalog.css
+   ============================================================ */
+
+/* --- LAYOUT UTAMA --- */
+.katalog-main { 
+  padding: var(--sp-10) 0 var(--sp-20); 
+}
+
+/* --- HERO CLEAN SECTION (MURNI GAMBAR FIGMA) --- */
+.katalog-hero-clean {
+  width: 100%;
+  line-height: 0;
+  display: block;
+  position: relative;
+  background: #f8faf9;
+}
+
+.hero-clean__img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+}
+
+/* --- FLOATING FEATURE BADGES --- */
+.katalog-features {
+  background: var(--clr-white);
+  padding: var(--sp-5) var(--sp-6);
+  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.06);
+  border-radius: var(--radius-xl);
+  max-width: 1140px;
+  width: calc(100% - (var(--container-pad) * 2));
+  margin: -60px auto var(--sp-12) auto;
+  position: relative;
+  z-index: 10;
+  border: 1px solid rgba(0, 0, 0, 0.02);
+}
+
+.katalog-features__inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--sp-6);
+  flex-wrap: wrap;
+}
+
+.katalog-feature {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-4);
+  flex: 1;
+  min-width: 240px;
+}
+
+.katalog-feature__icon-wrap {
+  width: 54px;
+  height: 54px;
+  border-radius: var(--radius-full);
+  background: transparent; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.katalog-feature__icon-wrap img {
+  display: block;
+  transition: transform 0.2s ease;
+}
+
+.katalog-feature:hover .katalog-feature__icon-wrap img {
+  transform: scale(1.1);
+}
+
+.katalog-feature__title {
+  font-weight: var(--fw-bold);
+  color: var(--clr-dark);
+  font-size: var(--fs-base);
+  margin: 0;
+}
+
+.katalog-feature__sub {
+  font-size: var(--fs-sm);
+  color: var(--clr-gray-500);
+  margin: 0;
+}
+
+/* --- SECTION TYPOGRAPHY (PERBAIKAN FIGMA) --- */
+.katalog-section {
+  margin-bottom: var(--sp-16);
+}
+
+.font-covered-grace {
+  font-family: 'Covered By Your Grace', cursive, var(--font-display) !important;
+  color: #EEC044 !important;
+  font-size: 24px !important;
+  text-transform: none !important;
+  display: block;
+  margin-bottom: -2px;
+  text-align: center;
+}
+
+.katalog-section-title {
+  font-size: var(--fs-2xl);
+  font-weight: var(--fw-extrabold);
+  color: var(--clr-dark);
+  margin: 0;
+  text-align: center;
+}
+
+/* --- SCROLL KESAMPING (ANTI-MELIPAT) --- */
+.katalog-scroll-container {
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  overflow-x: auto !important; 
+  gap: 20px !important; /* Jarak antar kartu figma murni */
+  padding: var(--sp-3) var(--sp-2) var(--sp-6) var(--sp-2) !important;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch; 
+}
+
+/* Desain Scrollbar Minimalis */
+.katalog-scroll-container::-webkit-scrollbar {
+  height: 6px;
+}
+.katalog-scroll-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+.katalog-scroll-container::-webkit-scrollbar-thumb {
+  background: rgba(73, 167, 96, 0.2);
+  border-radius: var(--radius-full);
+}
+
+/* --- PREMIUM GRID SYSTEM --- */
+.premium-fixed-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)) !important;
+  gap: var(--sp-6) !important;
+  padding: var(--sp-2) 0;
+}
+
+/* --- UKURAN KARTU PRODUK PREMIUM (ANTI-GEPENG) --- */
+.product-premium-card {
+  background: var(--clr-white);
+  border-radius: var(--radius-xl);
+  box-shadow: 0px 4px 25px rgba(0, 0, 0, 0.05);
+  width: 230px;
+  min-width: 230px; 
+  overflow: hidden;
+  position: relative;
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+  border: 1px solid #f0f4f1;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+}
+
+.product-premium-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0px 12px 30px rgba(73, 167, 96, 0.15);
+}
+
+.prod-card-img-wrap {
+  width: 100%;
+  height: 160px;
+  background: #f8faf9;
+  overflow: hidden;
+}
+
+.prod-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-slow);
+}
+
+.product-premium-card:hover .prod-card-img {
+  transform: scale(1.06);
+}
+
+.prod-card-body {
+  padding: var(--sp-4);
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1; 
+}
+
+.prod-card-title {
+  font-size: 16px;
+  font-weight: 800; /* Tebal padat sesuai Hi-Fi */
+  color: var(--clr-dark, #000000);
+  margin-bottom: 4px; /* Rapat ke elemen harga */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: left; /* Rata kiri rata dengan harga */
+}
+
+/* Elemen harga produk jadi murni figma */
+.prod-card-price {
+  font-size: 14px;
+  color: #49A760;
+  font-weight: 700;
+  margin-top: 0 !important; /* Reset margin minus */
+  margin-bottom: var(--sp-3, 12px);
+  text-align: left; /* Rata kiri berpasangan dengan judul */
+}
+
+/* --- WADAH BOX NUTRISI UTAMA (HIJAU TUA FIGMA) --- */
+.prod-card-nutrition-container {
+  background: #1E5128 !important; /* Warna basis hijau tua murni dari Figma */
+  border-radius: 14px;
+  padding: 6px;
+  margin-bottom: var(--sp-4);
+  text-align: center;
+  box-sizing: border-box;
+}
+
+/* --- KAPSUL PUTIH INTERNAL (MEMBUNGKUS KEDUA TEKS) --- */
+.nutrition-white-pill {
+  background: #ffffff !important; /* Latar belakang putih murni */
+  border-radius: 20px;            /* Sudut membulat lonjong berbentuk kapsul (Pill) */
+  display: flex;
+  flex-direction: column;         /* Mengatur text Nutrition Bar & isi nutrisi menumpuk atas-bawah */
+  align-items: center; 
+  justify-content: center;
+  padding: 8px 0;
+  width: 100%;
+  box-sizing: border-box;
+  box-shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+/* Tulisan "NUTRITION BAR" Di Dalam Kapsul Putih */
+.nutrition-white-pill .nutrition-label-top {
+  display: block !important;
+  font-size: 10px !important;
+  color: #8da494 !important;      /* Berwarna abu-hijau figma asli biar kontras di atas putih */
+  font-weight: var(--fw-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 2px;             /* Jarak kecil menuju teks isi nutrisi */
+}
+
+/* Tulisan Nilai Nutrisi Utama (Misal: Vitamin C, Kalium, Antioksidan) */
+.nutrition-white-pill .nutrition-value-text {
+  display: block !important;
+  font-size: 13px !important;
+  font-weight: var(--fw-extrabold) !important;
+  color: #1E5128 !important;      /* Dikunci ke warna hijau gelap figma agar terbaca tajam */
+}
+
+/* --- TOMBOL PILIH KAPSUL DENGAN GAP ICON --- */
+.prod-card-pilih-btn {
+  width: 100%;
+  background: #49A760;
+  color: var(--clr-white);
+  border: none;
+  border-radius: var(--radius-full);
+  padding: var(--sp-2) 0;
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-bold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-2); /* Jarak konstan antara asset img icon dan teks PILIH */
+  cursor: pointer;
+  transition: background var(--transition-fast), transform var(--transition-fast);
+  margin-top: auto; 
+}
+
+.prod-card-pilih-btn:hover {
+  background: #3d8c50;
+  transform: translateY(-1px);
+}
+
+.prod-card-pilih-btn:active {
+  transform: translateY(1px);
+}
+
+/* Mengunci posisi vertikal Gambar Ikon di dalam button */
+.prod-card-pilih-btn img {
+  display: inline-block;
+  vertical-align: middle;
+  flex-shrink: 0;
+}
+
+/* ============================================================
+   FARMER CARD COMPONENT STYLING (SINKRON DETAIL TOTAL)
+   ============================================================ */
+
+.farmer-premium-card {
+  background: #1E5128 !important; /* Hijau tua pekat sesuai HiFi */
+  border-radius: 16px;
+  padding: 16px;
+  width: 242px;
+  min-width: 242px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  box-sizing: border-box;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+}
+
+/* Pembungkus Foto Utama Petani */
+.farmer-avatar-wrap {
+  position: relative;
+  width: 100%;
+  height: 155px;
+  border-radius: 12px;
+  margin-bottom: 12px;
+}
+
+.farmer-avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+/* POSISI BADGE RUMAH KECIL DI SISI KANAN BAWAH GAMBAR */
+.farmer-badge-home-accent {
+  position: absolute;
+  bottom: 8px;     /* Menempel presisi di batas bawah foto */
+  right: 8px;      /* Menempel presisi di batas kanan foto */
+  background: #ffffff !important;
+  border-radius: 6px;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15);
+  z-index: 5;
+}
+
+/* Blok Putih Nama & Lokasi Petani */
+.farmer-info-block {
+  width: 100%;
+  background: #ffffff !important;
+  border-radius: 10px;
+  padding: 8px 14px;
+  margin-bottom: 14px;
+  box-sizing: border-box;
+  text-align: left;
+}
+
+.farmer-premium-card .farmer-card-name {
+  font-size: 14px !important;
+  font-weight: 800 !important; /* Extra bold sesuai desain */
+  color: #000000 !important;
+  margin: 0 0 2px 0 !important;
+}
+
+.farmer-premium-card .farmer-card-loc {
+  font-size: 11px !important;
+  color: #888888 !important;
+  margin: 0 !important;
+}
+
+/* Label Teks Products dengan SVG Putih Bersandingan */
+.farmer-products-label {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2, 8px); /* Jarak konstan horizontal icon ke teks */
+  color: #ffffff !important;
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  width: 100%;
+  text-align: left;
+}
+
+.farmer-products-label img {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* Area Row List Hasil Panen */
+.farmer-premium-card .farmer-mini-crops {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+/* GAMBAR KOTAK BUAH LANGSUNG (TANPA BACKGROUND PUTIH KOTAK GANDA) */
+.farmer-crop-direct {
+  width: 46px;
+  height: 46px;
+  flex-shrink: 0;
+  border-radius: 8px;
+  overflow: hidden; /* Memastikan kelengkungan gambar rapi */
+}
+
+.farmer-crop-direct img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Tombol Lebar Pilihan di Dasar */
+.farmer-action-wide-btn {
+  width: 100%;
+  background: #49A760 !important; /* Hijau terang serasi */
+  color: #ffffff !important;
+  border: none;
+  border-radius: 100px; /* Fully rounded pill */
+  padding: 10px 0;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  text-align: center;
+  margin-top: auto; /* Memaksa posisi selalu presisi rata bawah boks */
+  transition: background 0.2s ease;
+}
+
+.farmer-action-wide-btn:hover {
+  background: #3d8c50 !important;
+}
+
+/* --- RESPONSIFITAS --- */
+@media (max-width: 992px) {
+  .katalog-features {
+    margin-top: -30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .katalog-hero { 
+    height: 320px; 
+  }
+  .katalog-hero__title {
+    font-size: var(--fs-2xl);
+  }
+  .premium-fixed-grid {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)) !important;
+    gap: var(--sp-4) !important;
+  }
+  .product-premium-card {
+    width: 100%;
+    min-width: 0;
+  }
+}
+
+@media (max-width: 576px) {
+  .katalog-features {
+    display: none; 
+  }
+  .farmer-premium-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--sp-4);
+  }
+  .farmer-action-svg-btn {
+    align-self: flex-end;
+    margin-top: calc(var(--sp-2) * -1);
+  }
+}
+
+/* ============================================================
+   OPTIMALISASI WEB COMPONENTS (MENGUNCI ELEMENT ANTI-GEPENG)
+   ============================================================ */
+product-card, farmer-card {
+  display: block; 
+  width: auto;
+}
+
+.katalog-scroll-container product-card {
+  flex-shrink: 0;
+}
+
+.katalog-scroll-container farmer-card {
+  flex-shrink: 0;
+  min-width: 290px;
+}
+
+/* Kunci utama penahan komponen kartu produk jadi murni figma */
+.katalog-scroll-container product-jadi-card {
+  flex-shrink: 0 !important;
+  display: block !important;
+  width: 230px !important;
+}
+
+.farmer-mini-badge {
+  background: var(--clr-white);
+  width: 26px;
+  height: 26px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden; 
+  padding: 3px;    
+  box-shadow: 0px 2px 6px rgba(0,0,0,0.03);
+}
+
+.farmer-mini-badge img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; 
+}
+
+@media (max-width: 768px) {
+  .premium-fixed-grid product-card {
+    width: 100%;
+  }
+}
+
+/* ============================================================
+   SECTION KEDUA: CHOOSE YOUR SMOOTHIES WITH BACKGROUND - PROFILE PUNYA
+   ============================================================ */
+.katalog-section {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  
+  /* PATH FILE LATAR BELAKANG SECTION KEDUA */
+  background-image: url('../../assets/img/profile/section2-profile.png'); 
+  
+  background-size: cover;
+  background-position: center top; /* Mengunci background dimulai dari atas */
+  background-repeat: no-repeat;
+  
+  /* Jarak atas yang luas agar tulisan judul "Choose Your Smoothies" 
+     berada di area bersih/tidak menutupi elemen penting background,
+     dan card otomatis turun ke bawah */
+  padding-top: 180px; 
+  padding-bottom: 120px; /* Jarak aman sebelum menyentuh footer */
+  
+  /* Dipastikan nol agar menempel pas dengan footer di bawahnya */
+  margin-top: 0;
+  margin-bottom: 0; 
+}
+
+/* Memastikan teks judul berada di posisi tengah dan rapi */
+.katalog-section-header {
+  text-align: center;
+  margin-bottom: 50px; /* Jarak antara judul teks ke card di bawahnya */
+}
+
+.font-covered-grace {
+  font-family: 'Covered By Your Grace', cursive;
+  font-size: var(--fs-lg, 24px);
+  color: #c2a15f; /* Menyesuaikan warna gold/hijau muda khas tema */
+  display: block;
+  margin-bottom: 5px;
+}
+
+.katalog-section-title {
+  font-size: var(--fs-xl, 32px);
+  font-weight: 800;
+  color: var(--clr-dark, #222222);
+  margin: 0;
+}
+
+/* Container Wrapper Scroll Horizontal agar Card rapi berjejer */
+.katalog-scroll-container {
+  display: flex;
+  gap: 24px;
+  overflow-x: auto;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 10px 25px 20px 25px;
+  scrollbar-width: none; /* Sembunyikan scrollbar Firefox */
+}
+
+.katalog-scroll-container::-webkit-scrollbar {
+  display: none; /* Sembunyikan scrollbar Chrome/Safari */
+}
+
+/* Memastikan custom element component nge-flex dengan benar */
+.katalog-scroll-container product-premium-card {
+  display: block;
+  flex-shrink: 0;
+  background: #ffffff;
+  border-radius: 24px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  overflow: hidden;
+}

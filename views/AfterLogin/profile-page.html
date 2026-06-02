@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profil Saya — Dewy Bar</title>
+  <link class="ui-theme" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Covered+By+Your+Grace&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../style/global.css">
+  <link rel="stylesheet" href="../../style/navbar.css">
+  <link rel="stylesheet" href="../../style/footer.css">
+  <link rel="stylesheet" href="../../style/pages.css">
+  <link rel="stylesheet" href="../../style/katalog.css">
+
+  <style>
+    /* ============================================================
+       STYLE UTAMA PROFILE BANNER & GRID
+       ============================================================ */
+    .profile-hero-container {
+      position: relative;
+      min-height: 650px;
+      padding-top: 140px;
+      padding-bottom: 60px;
+      background-image: url('../../assets/img/profile/lb-profile.png');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .profile-grid-container {
+      max-width: 1050px;
+      margin: 0 auto;
+    }
+
+    .profile-left-box {
+      background-color: #ffffff;
+      color: var(--clr-dark);
+      padding: 40px 30px;
+      border-radius: 24px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      height: 100%; /* Menyesuaikan tinggi kolom kanan */
+      justify-content: center; /* Menjaga konten tetap di tengah secara vertikal */
+      gap: 15px; /* Mengurangi jarak antar elemen agar lebih rapat */
+    }
+    /* Gaya khusus untuk Hi, Healthy Buddy */
+    .profile-card__label {
+      font-family: 'Covered By Your Grace', cursive; /* Menggunakan font sesuai permintaan */
+      font-size: 22px; /* Ukuran font disesuaikan agar proporsional */
+      color: #EEC044; /* Warna kuning emas */
+      margin-bottom: 0; 
+      text-transform: none; /* Menghilangkan uppercase */
+      letter-spacing: 0;
+      font-weight: 400;
+    }
+
+    .profile-card__name {
+      margin-bottom: 0; /* Dihapus agar gap di atas yang mengaturnya */
+    }
+
+    .profile-avatar-box {
+      width: 200px;
+      height: 200px;
+      border-radius: 20px;
+      object-fit: cover;
+      border: 4px solid #F0F0F0;
+      background-color: #4BAF47;
+    }
+
+    /* Biarkan tombol tetap memiliki desain aslinya */
+    .btn-logout-action {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #d32f2f;
+      font-size: var(--fs-sm);
+      font-weight: 700;
+      text-decoration: none;
+      /* Kembalikan margin-top ke auto agar tetap menempel di bawah jika diinginkan, 
+        atau hapus jika ingin benar-benar mengikuti gap */
+      margin-top: 10px; 
+      padding: 10px 20px;
+      background-color: #ffeded;
+      border-radius: 12px;
+      transition: all 0.2s;
+    }
+
+    .btn-logout-action:hover {
+      background: #d32f2f;
+      color: #ffffff;
+    }
+
+    .profile-right-box {
+      padding: 40px;
+      background: #ffffff;
+      border-radius: 24px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      height: 100%;
+    }
+
+    .profile-form-title {
+      font-size: var(--fs-xl);
+      font-weight: 800;
+      color: var(--clr-dark);
+      margin-bottom: 25px;
+    }
+
+    .profile-form .form-group {
+      margin-bottom: 16px;
+    }
+
+    .profile-form .form-label {
+      font-weight: 700;
+      font-size: var(--fs-sm);
+      color: #444444;
+      margin-bottom: 6px;
+    }
+
+    .profile-form .form-input {
+      width: 100%;
+      padding: 10px 14px;
+      background-color: #F7F7F7;
+      border: 1px solid #E5E5E5;
+      border-radius: 12px;
+      font-size: var(--fs-sm);
+      font-weight: 600;
+      color: var(--clr-dark);
+    }
+
+    /* ============================================================
+       SECTION 1: FAVORITE PRODUCT
+       ============================================================ */
+    .profile-full-width-section {
+      width: 100vw;
+      position: relative;
+      left: 50%;
+      right: 50%;
+      margin-left: -50vw;
+      margin-right: -50vw;
+      background-image: url('../../assets/img/profile/section1-profile.png'); 
+      background-size: cover;
+      background-position: center 0px;
+      background-repeat: no-repeat;
+      padding-top: 420px; 
+      padding-bottom: 100px; 
+      min-height: 900px;
+      margin-top: 0; 
+      margin-bottom: 0;
+    }
+
+    .profile-scroller-inner-wrap {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 25px;
+    }
+
+    .profile-horizontal-scroller {
+      display: flex;
+      gap: 24px;
+      overflow-x: auto;
+      padding-bottom: 20px;
+      padding-top: 10px;
+      scrollbar-width: none;
+    }
+    
+    .profile-horizontal-scroller::-webkit-scrollbar {
+      display: none;
+    }
+
+    .profile-horizontal-scroller product-premium-card {
+      display: block;
+      flex-shrink: 0;
+      background: #ffffff;
+      border-radius: 24px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      overflow: hidden;
+    }
+
+    /* ============================================================
+       SECTION 2: OUR RECOMMENDATION (REKAT SEMPURNA KE FOOTER JS)
+       ============================================================ */
+    .katalog-section {
+      width: 100vw;
+      position: relative;
+      left: 50%;
+      right: 50%;
+      margin-left: -50vw;
+      margin-right: -50vw;
+      
+      background-image: url('../../assets/img/profile/bg-section2-profile.png'); 
+      background-size: cover;
+      background-position: center top;
+      background-repeat: no-repeat;
+      
+      padding-top: 10px; 
+      padding-bottom: 120px; /* Diturunkan proporsional, sisa ditarik footer */
+      
+      margin-top: 0;
+      margin-bottom: 0 !important;
+    }
+
+    .katalog-section-header {
+      text-align: center;
+      margin-bottom: 35px; 
+    }
+
+    .font-covered-grace {
+      font-family: 'Covered By Your Grace', cursive;
+      font-size: 26px;
+      color: #4BAF47;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .katalog-section-title {
+      font-size: 36px;
+      font-weight: 800;
+      color: var(--clr-dark, #222222);
+      margin: 0;
+    }
+
+    .katalog-scroll-container {
+      display: flex;
+      gap: 24px;
+      overflow-x: auto;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 10px 25px 20px 25px;
+      scrollbar-width: none;
+    }
+
+    .katalog-scroll-container::-webkit-scrollbar {
+      display: none;
+    }
+
+    .katalog-scroll-container product-premium-card {
+      display: block;
+      flex-shrink: 0;
+      background: #ffffff;
+      border-radius: 24px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      overflow: hidden;
+    }
+
+    @media (max-width: 768px) {
+      .profile-left-box { height: auto; min-height: auto; margin-bottom: 20px; }
+      .profile-full-width-section { padding-top: 250px; padding-bottom: 40px; min-height: auto; }
+      .katalog-section { padding-top: 40px; padding-bottom: 60px; }
+    }
+
+    /* Mengubah background navbar dan menonaktifkan efek transparan/blur */
+    .navbar {
+      background-color: #4D4D4D !important;
+      backdrop-filter: none !important;
+      -webkit-backdrop-filter: none !important;
+      /* Tambahkan box-shadow jika ingin sedikit pemisah dengan konten di bawahnya */
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1) !important;
+    }
+
+    /* Memastikan teks dan link di navbar tetap terlihat jelas dengan warna putih */
+    .navbar__menu-link, 
+    .navbar__phone, 
+    .navbar__cart,
+    .navbar__social-circle {
+      color: #ffffff !important;
+    }
+
+    /* Jika ada ikon di dalam menu, pastikan warnanya putih */
+    .navbar__icon-wrapper {
+      color: #ffffff !important;
+    }
+
+    .navbar__social-circle {
+      background: rgba(255, 255, 255, 0.15) !important;
+      color: #ffffff !important;
+    }
+
+    /* Jika ikon menggunakan tag <img> dan bukan <i>, gunakan filter invert */
+    .navbar__social-circle img {
+        filter: brightness(0) invert(1) !important;
+    }
+
+    /* ============================================================
+        RESPONSIVE TAMBAHAN – PROFILE PAGE
+        ============================================================ */
+
+    /* TABLET (≤ 992px) */
+    @media (max-width: 992px) {
+        .profile-grid-container {
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+    }
+
+    /* HP (≤ 768px) */
+    @media (max-width: 768px) {
+        .form-input {
+            font-size: 14px;
+            padding: 10px 14px;
+        }
+        /* Tabel riwayat pesanan agar bisa di-scroll horizontal */
+        .table-responsive {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+    }
+
+    /* HP SANGAT KECIL (≤ 480px) */
+    @media (max-width: 480px) {
+        .profile-card__name {
+            font-size: 1.3rem;
+        }
+    }
+    </style>
+
+      </style>
+
+      <script>
+        class ProductPremiumCard extends HTMLElement {
+          connectedCallback() {
+            const id    = this.getAttribute('id') || '';
+            const name  = this.getAttribute('name') || '';
+            const price = parseFloat(this.getAttribute('price')) || 0;
+            const badge = this.getAttribute('badge') || 'Nutrition';
+            const img   = this.getAttribute('img') || '../../assets/images/placeholder.svg';
+            const type  = this.getAttribute('type') || 'mentah';
+            const fmt   = new Intl.NumberFormat('id-ID').format(price);
+
+            this.style.display  = 'block';
+            this.style.flexShrink = '0';
+
+            this.innerHTML = `
+              <div class="product-premium-card" onclick="goToDetail('${id}','${type}')" style="margin-bottom:0;">
+                <div class="prod-card-img-wrap">
+                  <img class="prod-card-img" src="${img}" alt="${name}" onerror="this.src='../../assets/images/placeholder.svg'">
+                </div>
+                <div class="prod-card-body">
+                  <p class="prod-card-title">${name}</p>
+                  <p class="prod-card-price">Rp${fmt}</p>
+                  <div class="prod-card-nutrition-container">
+                    <div class="nutrition-white-pill">
+                      <span class="nutrition-label-top">Nutrition Bar</span>
+                      <span class="nutrition-value-text">${badge}</span>
+                    </div>
+                  </div>
+                  <button class="prod-card-pilih-btn" onclick="event.stopPropagation(); addToCart({id:'${id}',name:'${name}',price:${price},img:'${img}',type:'${type}'})">
+                    <img src="../../assets/svg/plus-circle-pilih.svg" alt="+" width="14" height="14">
+                    Pilih
+                  </button>
+                </div>
+              </div>`;
+          }
+        }
+        customElements.define('product-premium-card', ProductPremiumCard);
+      </script>
+</head>
+<body>
+
+<nav class="navbar" id="mainNavbar">
+  <div class="navbar__inner">
+    <a href="../../index.html" class="navbar__logo">
+      <img src="../../assets/svg/logo_dewy_bar_putih.svg.svg" alt="Dewy Bar" class="navbar__logo-img">
+    </a>
+    <div class="navbar__social-group">
+      <a href="https://www.twitter.com" class="navbar__social-circle" target="_blank"><i class="bi bi-twitter-x"></i></a>
+      <a href="https://www.facebook.com" class="navbar__social-circle" target="_blank"><i class="bi bi-facebook"></i></a>
+      <a href="https://www.linkedin.com" class="navbar__social-circle" target="_blank"><i class="bi bi-linkedin"></i></a>
+      <a href="https://www.instagram.com" class="navbar__social-circle" target="_blank"><i class="bi bi-instagram"></i></a>
+    </div>
+    <ul class="navbar__nav-links navbar__nav-links--static">
+      <li><a href="../../index.html" class="navbar__menu-link">Home</a></li>
+      <li><a href="../../index.html#about" class="navbar__menu-link">About</a></li>
+      <li><a href="../../index.html#contact" class="navbar__menu-link">Contact</a></li>
+    </ul>
+    <ul class="navbar__nav-links navbar__nav-links--features">
+      <li><a href="katalog-produk-mentah.html" class="navbar__menu-link">Katalog</a></li>
+      <li><a href="smart-pre-order.html" class="navbar__menu-link">Smart Order</a></li>
+      <li><a href="jejak-petani.html" class="navbar__menu-link">Jejak Petani</a></li>
+    </ul>
+    <div class="navbar__actions">
+      <div class="navbar__profile">
+        <div class="navbar__avatar-wrapper" id="userAvatar" onclick="toggleProfileDropdown()">
+          <img src="../../assets/img/homepage/logo_profile.img.png" alt="Profil" class="navbar__avatar">
+        </div>
+        <div class="navbar__dropdown" id="profileDropdown">
+          <div class="navbar__dropdown-name" id="userName">Pengguna</div>
+          <hr class="navbar__dropdown-divider">
+          <a href="profile-page.html" class="navbar__dropdown-item"><i class="bi bi-person"></i> Profil Saya</a>
+          <a href="keranjang.html" class="navbar__dropdown-item"><i class="bi bi-bag"></i> Keranjang</a>
+          <a href="smart-pre-order.html" class="navbar__dropdown-item"><i class="bi bi-calendar2-check"></i> Smart Order</a>
+          <hr class="navbar__dropdown-divider">
+          <a href="#" class="navbar__dropdown-item navbar__dropdown-item--danger" onclick="handleLogout()"><i class="bi bi-box-arrow-right"></i> Logout</a>
+        </div>
+      </div>
+      <a href="keranjang.html" class="navbar__cart">
+        <span class="navbar__icon-wrapper"><i class="bi bi-bag-fill"></i></span>
+        <span class="navbar__cart-badge" id="cartBadge" style="display:none;">0</span>
+      </a>
+      <div class="navbar__phone">
+        <span class="navbar__icon-wrapper"><i class="bi bi-telephone-fill"></i></span>
+        <span class="navbar__phone-number">+6287868889068</span>
+      </div>
+      <button class="navbar__hamburger" id="hamburgerBtn">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<div class="profile-hero-container">
+  <div class="container profile-grid-container">
+    <div class="row align-items-stretch">
+      <div class="col-md-4 mb-4 mb-md-0">
+        <div class="profile-left-box">
+          <p class="profile-card__label">Hi, Healthy Buddy</p>
+          <p class="profile-card__name" id="profileDisplayName">Pengguna</p>
+          <img src="../../assets/img/profile/profile-photo.png" alt="Avatar" class="profile-avatar-box" id="profileAvatar" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%234BAF47%22/></svg>'">
+          <label for="avatarInput" style="cursor:pointer; display:block; margin-top: 15px;">
+            <span style="font-size:var(--fs-xs); color: #4BAF47; font-weight: 700;"><i class="bi bi-camera-fill"></i>&nbsp;Ganti Foto</span>
+          </label>
+          <input type="file" id="avatarInput" accept="image/*" style="display:none;">
+          <a href="#" onclick="handleLogout()" class="btn-logout-action"><i class="bi bi-box-arrow-right"></i> Logout Akun</a>
+        </div>
+      </div>
+
+      <div class="col-md-8">
+        <div class="profile-right-box">
+          <h3 class="profile-form-title">Profile</h3>
+          <div class="profile-form">
+            <div class="form-group">
+              <label class="form-label">Nama Profil</label>
+              <input type="text" id="profileName" class="form-input" placeholder="Nama Anda">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Nama Pengguna</label>
+              <input type="text" id="profileUsername" class="form-input" placeholder="Username">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Nomor Telepon</label>
+              <input type="tel" id="profilePhone" class="form-input" placeholder="08xxxxxxxxxx">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Alamat</label>
+              <textarea id="profileAddress" class="form-input" rows="2" placeholder="Alamat pengiriman"></textarea>
+            </div>
+            <div class="text-end mt-3">
+              <button class="btn btn-success" id="saveProfileBtn" style="background-color:#4BAF47; border:none; font-weight:700; border-radius:10px;">
+                <i class="bi bi-check-circle"></i>&nbsp;Edit Profile
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<main class="profile-page-products">
+  
+  <section class="profile-full-width-section">
+    <div class="profile-scroller-inner-wrap">
+      <div class="profile-horizontal-scroller">
+        <product-premium-card id="green-velvet-smoothie" name="Green Velvet Smoothie" price="17000" badge="Vitamin B6" img="../../assets/img/profile/smoothies-stroberi.png" type="mentah"></product-premium-card>
+        <product-premium-card id="tropical-lettuce-cream" name="Tropical Lettuce Cream" price="13000" badge="Vitamin C" img="../../assets/img/profile/apel-juice.png" type="mentah"></product-premium-card>
+        <product-premium-card id="berry-green-boost" name="Berry-Green Boost" price="17000" badge="Vitamin C" img="../../assets/img/profile/salad-selada.png" type="mentah"></product-premium-card>
+      </div>
+    </div>
+  </section>
+
+  <section class="katalog-section">
+    <div class="katalog-section-header">
+      <span class="font-covered-grace">Let's Try Another Varian</span>
+      <h2 class="katalog-section-title">Our Recommendation</h2>
+    </div>
+    
+    <div class="katalog-scroll-container">
+      <product-premium-card id="green-velvet-smoothie-rec" name="Green Velvet Smoothie" price="17000" badge="Vitamin B6" img="../../assets/img/katalog-produk-sayur/green-velvet-smoothies.png" type="mentah"></product-premium-card>
+      <product-premium-card id="tropical-lettuce-cream-rec" name="Tropical Lettuce Cream" price="13000" badge="Vitamin C" img="../../assets/img/katalog-produk-sayur/tropical-lettuce-cream.png" type="mentah"></product-premium-card>
+      <product-premium-card id="berry-green-boost-rec" name="Berry-Green Boost" price="17000" badge="Vitamin C" img="../../assets/img/katalog-produk-sayur/berry-green-boost.png" type="mentah"></product-premium-card>
+      <product-premium-card id="avocado-lettuce-silk-rec" name="Avocado Lettuce Silk" price="16000" badge="Vitamin E" img="../../assets/img/katalog-produk-sayur/avocado-lettuce-silk.png" type="mentah"></product-premium-card>
+    </div>
+  </section>
+
+</main>
+
+<div id="footer-container"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../../javascript/auth.js"></script>
+<script src="../../javascript/cart.js"></script>
+<script src="../../javascript/navbar.js"></script>
+<script src="../../javascript/main.js"></script>
+<script>
+function goToDetail(id, type) {
+  if (type === "mentah") {
+    window.location.href = `shop-details.html?id=${id}`;
+  } else {
+    window.location.href = `shop-details.html?id=${id}`;
+  }
+}
+</script>
+
+</body>
+</html>

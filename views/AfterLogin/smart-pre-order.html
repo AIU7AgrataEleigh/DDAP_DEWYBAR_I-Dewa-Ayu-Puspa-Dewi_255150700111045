@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Pre-Order — Dewy Bar</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="../../style/global.css">
+  <link rel="stylesheet" href="../../style/navbar.css">
+  <link rel="stylesheet" href="../../style/footer.css">
+  <link rel="stylesheet" href="../../style/pages.css">
+  <style>
+    /* Navbar dark override */
+    .navbar {
+      background: #4D4D4D !important;
+      backdrop-filter: none !important;
+      -webkit-backdrop-filter: none !important;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1) !important;
+    }
+    .navbar__menu-link, .navbar__phone-number { color: #ffffff !important; }
+    .navbar__social-circle { background: rgba(255,255,255,0.15) !important; color: #ffffff !important; }
+    .navbar__hamburger span { background: #ffffff !important; }
+    .navbar__icon-wrapper { color: #ffffff !important; }
+    .navbar__cart { color: #ffffff !important; }
+
+    /* Hero: tampil penuh di bawah navbar */
+    .spo-hero {
+      padding-top: 64px;
+      line-height: 0;
+    }
+    .spo-hero__bg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* Grid utama */
+    .spo-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;
+      gap: 30px;
+      align-items: start;
+      margin-top: 30px;
+    }
+
+    /* Kalender wrapper — tinggi dibentuk oleh padding + kalender */
+    .spo-cal-wrap {
+      position: relative;
+      width: 100%;
+      padding: 24px;
+      border-radius: 24px;
+      overflow: hidden;
+    }
+    /* Background image mengisi penuh wrapper (terbentuk oleh kalender + padding) */
+    .spo-cal-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+      border-radius: 24px;
+    }
+    /* Kalender putih solid di atas background */
+    .spo-calendar {
+      position: relative;
+      z-index: 1;
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 20px;
+      width: 100%;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+    }
+    .cal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+    .cal-nav-btn {
+      background: none;
+      border: none;
+      font-size: 1.2rem;
+      color: var(--clr-primary);
+      cursor: pointer;
+      padding: 4px 8px;
+    }
+    .cal-days-header {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      text-align: center;
+      font-weight: 700;
+      font-size: 0.75rem;
+      color: #757575;
+      margin-bottom: 6px;
+    }
+    .cal-dates {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 2px;
+      text-align: center;
+    }
+    .cal-date-cell {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      aspect-ratio: 1 / 1;
+      border-radius: 50%;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      background: none;
+      transition: all 0.15s ease;
+      font-family: var(--font-body);
+      color: var(--clr-dark);
+    }
+    .cal-date-cell:hover { background: var(--clr-primary-light); color: var(--clr-primary); }
+    .cal-date-cell.active { background: #49A760 !important; color: #fff !important; }
+    .cal-date-cell.today  { border: 2px solid #49A760; color: #49A760; font-weight: 800; }
+    .cal-date-cell.past   { color: #cccccc; cursor: not-allowed; }
+    .cal-date-cell.has-order { background: #1F4E3D; color: #fff; }
+
+    /* Pesanan box */
+    .spo-pesanan-box {
+      background: #FDFBF7;
+      border-radius: 20px;
+      padding: 24px;
+      margin-top: 24px;
+      box-shadow: var(--shadow-sm);
+    }
+    .spo-pesanan-title {
+      font-size: var(--fs-lg);
+      font-weight: 800;
+      margin-bottom: 16px;
+    }
+    .spo-order-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #fff;
+      padding: 12px 16px;
+      border-radius: 14px;
+      margin-bottom: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+    .spo-order-left { display: flex; align-items: center; gap: 12px; }
+    .spo-order-img  { width: 60px; height: 60px; border-radius: 10px; object-fit: cover; flex-shrink: 0; }
+    .spo-order-name  { font-weight: 700; font-size: var(--fs-sm); margin-bottom: 2px; }
+    .spo-order-price { color: var(--clr-primary); font-weight: 700; font-size: var(--fs-xs); }
+    .spo-btn-status  { background: #49A760; color: #fff; font-weight: 700; padding: 7px 18px; border-radius: 10px; font-size: var(--fs-xs); border: none; cursor: pointer; flex-shrink: 0; }
+
+    /* Panel kanan */
+    .spo-right { display: flex; flex-direction: column; gap: 16px; }
+    .spo-panel-card { background: #FDFBF7; border-radius: 20px; overflow: hidden; box-shadow: var(--shadow-sm); }
+    .spo-panel-header { background: #EEC044; color: #fff; font-weight: 800; text-align: center; padding: 14px; font-size: var(--fs-md); }
+    .spo-panel-body { padding: 20px; }
+    .spo-time-select {
+      width: 100%; padding: 10px 14px;
+      border-radius: 10px; border: 1px solid var(--clr-border);
+      background: #fff; font-weight: 600; color: var(--clr-gray-700);
+      margin-bottom: 16px; font-family: var(--font-body);
+      font-size: var(--fs-sm);
+    }
+    .spo-pemesan-item { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+    .spo-pemesan-img  { width: 42px; height: 42px; border-radius: 50%; object-fit: cover; flex-shrink: 0; }
+    .spo-pemesan-by   { font-size: var(--fs-xs); font-weight: 700; color: var(--clr-primary); margin: 0; }
+    .spo-pemesan-addr { font-size: var(--fs-sm); font-weight: 700; color: var(--clr-dark); margin: 0; }
+    .spo-total-box {
+      background: #fff; border: 1px solid var(--clr-border);
+      text-align: center; padding: 12px; font-weight: 800;
+      border-radius: 10px; font-size: var(--fs-base);
+    }
+    .btn-yuk-pesan {
+      display: block; width: 100%; text-align: center;
+      background: #EEC044; color: #fff; border: none;
+      border-radius: 12px; padding: 14px;
+      font-weight: 800; font-size: var(--fs-base);
+      cursor: pointer; transition: background 0.2s;
+      text-decoration: none;
+    }
+    .btn-yuk-pesan:hover { background: #d4a020; color: #fff; }
+    .btn-pesan-sekarang {
+      display: block; width: 100%; text-align: center;
+      background: #49A760; color: #fff; border: none;
+      border-radius: 12px; padding: 14px;
+      font-weight: 800; font-size: var(--fs-base);
+      cursor: pointer; transition: background 0.2s;
+    }
+    .btn-pesan-sekarang:hover { background: #1F4E3D; }
+
+    /* Responsive */
+    @media (max-width: 992px) {
+      .spo-grid { grid-template-columns: 1fr; }
+      .spo-right { position: static; }
+      .spo-order-item { flex-wrap: wrap; gap: 10px; }
+    }
+    @media (max-width: 576px) {
+      .spo-calendar { padding: 14px; }
+      .cal-date-cell { font-size: 0.72rem; }
+      .spo-panel-body { padding: 14px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar" id="mainNavbar">
+  <div class="navbar__inner">
+    <a href="../../index.html" class="navbar__logo">
+      <img src="../../assets/svg/logo_dewy_bar_putih.svg.svg" alt="Dewy Bar" class="navbar__logo-img">
+    </a>
+
+    <div class="navbar__social-group">
+      <a href="https://www.twitter.com" class="navbar__social-circle" target="_blank" title="Twitter"><i class="bi bi-twitter-x"></i></a>
+      <a href="https://www.facebook.com" class="navbar__social-circle" target="_blank" title="Facebook"><i class="bi bi-facebook"></i></a>
+      <a href="https://www.linkedin.com" class="navbar__social-circle" target="_blank" title="LinkedIn"><i class="bi bi-linkedin"></i></a>
+      <a href="https://www.instagram.com" class="navbar__social-circle" target="_blank" title="Instagram"><i class="bi bi-instagram"></i></a>
+    </div>
+
+    <ul class="navbar__nav-links navbar__nav-links--static">
+      <li><a href="../../index.html" class="navbar__menu-link">Home</a></li>
+      <li><a href="../../index.html#about" class="navbar__menu-link">About</a></li>
+      <li><a href="../../index.html#contact" class="navbar__menu-link">Contact</a></li>
+    </ul>
+
+    <ul class="navbar__nav-links navbar__nav-links--features">
+      <li><a href="katalog-produk-mentah.html" class="navbar__menu-link">Katalog</a></li>
+      <li><a href="smart-pre-order.html" class="navbar__menu-link navbar__menu-link--active">Smart Order</a></li>
+      <li><a href="jejak-petani.html" class="navbar__menu-link">Jejak Petani</a></li>
+    </ul>
+
+    <div class="navbar__actions">
+      <div class="navbar__profile">
+        <div class="navbar__avatar-wrapper" id="userAvatar" onclick="toggleProfileDropdown()">
+          <img src="../../assets/img/homepage/logo_profile.img.png" alt="Profil" class="navbar__avatar">
+        </div>
+        <div class="navbar__dropdown" id="profileDropdown">
+          <div class="navbar__dropdown-name" id="userName">Pengguna</div>
+          <hr class="navbar__dropdown-divider">
+          <a href="profile-page.html" class="navbar__dropdown-item"><i class="bi bi-person"></i> Profil Saya</a>
+          <a href="keranjang.html" class="navbar__dropdown-item"><i class="bi bi-bag"></i> Keranjang</a>
+          <a href="smart-pre-order.html" class="navbar__dropdown-item"><i class="bi bi-calendar2-check"></i> Smart Order</a>
+          <hr class="navbar__dropdown-divider">
+          <a href="#" class="navbar__dropdown-item navbar__dropdown-item--danger" onclick="handleLogout()"><i class="bi bi-box-arrow-right"></i> Logout</a>
+        </div>
+      </div>
+
+      <a href="keranjang.html" class="navbar__cart" title="Keranjang">
+        <span class="navbar__icon-wrapper"><i class="bi bi-bag-fill"></i></span>
+        <span class="navbar__cart-badge" id="cartBadge" style="display:none;">0</span>
+      </a>
+
+      <div class="navbar__phone">
+        <span class="navbar__icon-wrapper"><i class="bi bi-telephone-fill"></i></span>
+        <span class="navbar__phone-number">+6287868889068</span>
+      </div>
+      
+      <button class="navbar__hamburger" id="hamburgerBtn">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<section class="spo-hero">
+  <img src="../../assets/img/smart-pre-order/smart-pre-order.png" alt="Smart Pre-Order" class="spo-hero__bg">
+</section>
+
+<main class="spo-main mb-5" style="padding-top: 30px;">
+  <div class="container">
+    <div class="spo-grid">
+
+      <div class="spo-left">
+        <div class="spo-cal-wrap">
+          <img src="../../assets/img/smart-pre-order/bg-kalender.png" alt="" class="spo-cal-bg">
+          <div class="spo-calendar">
+            <div class="cal-header">
+              <button class="cal-nav-btn" id="calPrev">&laquo;</button>
+              <span class="cal-month" id="calMonth">May 2026</span>
+              <button class="cal-nav-btn" id="calNext">&raquo;</button>
+            </div>
+            <div class="cal-days-header">
+              <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
+            </div>
+            <div class="cal-dates" id="calDates"></div>
+          </div>
+        </div>
+
+        <div class="spo-pesanan-box">
+          <h4 class="spo-pesanan-title">Pesanan Kamu</h4>
+          <div id="pesananList">
+            <div class="spo-order-item">
+              <div class="spo-order-left">
+                <img src="../../assets/img/smart-pre-order/minty-strawberry.png" class="spo-order-img" alt="Minty Strawberry" onerror="this.src='../../assets/img/logo_profile.img.png'">
+                <div>
+                  <p class="spo-order-name">Minty Strawberry</p>
+                  <p class="spo-order-price">Rp14.000</p>
+                </div>
+              </div>
+              <button class="spo-btn-status">Selesai</button>
+            </div>
+
+            <div class="spo-order-item">
+              <div class="spo-order-left">
+                <img src="../../assets/img/smart-pre-order/malang-medley.png" class="spo-order-img" alt="Yummy Melba Blocks" onerror="this.src='../../assets/img/logo_profile.img.png'">
+                <div>
+                  <p class="spo-order-name">Malang Medley Slices</p>
+                  <p class="spo-order-price">Rp14.000</p>
+                </div>
+              </div>
+              <button class="spo-btn-status">Selesai</button>
+            </div>
+          </div>
+
+          <div class="spo-pesanan-empty text-center py-4" id="pesananEmpty" style="display: none;">
+            <i class="bi bi-bag-x" style="font-size: 3rem; color: var(--clr-gray-400);"></i>
+            <p class="mt-2 text-muted">Belum ada pesanan. Yuk Pesan Sekarang</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="spo-right" id="rightPanel">
+        <div class="spo-panel-card">
+          <div class="spo-panel-header">Biaya Ongkir</div>
+          <div class="spo-panel-body">
+            <p class="form-label mb-2">Pilih Waktu</p>
+            <select class="spo-time-select" id="timeSelect">
+              <option value="">Select Waktu</option>
+              <option value="06:00 - 08:00" selected>06:00 – 08:00</option>
+              <option value="08:00 - 10:00">08:00 – 10:00</option>
+              <option value="10:00 - 12:00">10:00 – 12:00</option>
+              <option value="12:00 - 14:00">12:00 – 14:00</option>
+              <option value="14:00 - 16:00">14:00 – 16:00</option>
+              <option value="16:00 - 18:00">16:00 – 18:00</option>
+              <option value="18:00 - 20:00">18:00 – 20:00</option>
+            </select>
+
+            <p class="form-label mb-3">Pemesan Lain</p>
+            <div class="spo-pemesan-item">
+              <img class="spo-pemesan-img" src="../../assets/img/smart-pre-order/tirta.png" alt="Tirta" onerror="this.src='../../assets/images/placeholder.svg'">
+              <div>
+                <p class="spo-pemesan-by"><i class="bi bi-geo-alt-fill"></i> by Tirta Amalia</p>
+                <p class="spo-pemesan-addr">Jl. Sigura-Gura V</p>
+              </div>
+            </div>
+            <div class="spo-pemesan-item">
+              <img class="spo-pemesan-img" src="../../assets/img/smart-pre-order/kevin.png" alt="Kevin" onerror="this.src='../../assets/images/placeholder.svg'">
+              <div>
+                <p class="spo-pemesan-by"><i class="bi bi-geo-alt-fill"></i> by Kevin Martin</p>
+                <p class="spo-pemesan-addr">Jl. Bendungan Sulsam</p>
+              </div>
+            </div>
+            <div class="spo-pemesan-item">
+              <img class="spo-pemesan-img" src="../../assets/img/smart-pre-order/lukman.png" alt="Lukman" onerror="this.src='../../assets/images/placeholder.svg'">
+              <div>
+                <p class="spo-pemesan-by"><i class="bi bi-geo-alt-fill"></i> by Lukman</p>
+                <p class="spo-pemesan-addr">Jl. Sumber Sari</p>
+              </div>
+            </div>
+
+            <p class="form-label mt-3 mb-2">Total Ongkir</p>
+            <div class="spo-total-box" id="shippingTotal">Rp0</div>
+          </div>
+        </div>
+
+        <a href="katalog-produk-mentah.html" class="btn-yuk-pesan">Yuk Pesan Lagi!</a>
+        <button class="btn-pesan-sekarang" id="pesanSekarangBtn">PESAN SEKARANG</button>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<div id="footer-container"></div>
+
+<div class="toast-notif" id="toastNotif"><i class="bi bi-check-circle-fill"></i><span id="toastMsg"></span></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../../javascript/auth.js"></script>
+<script src="../../javascript/cart.js"></script>
+<script src="../../javascript/navbar.js"></script>
+<script src="../../javascript/main.js"></script>
+
+</body>
+</html>

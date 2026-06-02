@@ -1,0 +1,220 @@
+/* ============================================================
+   DEWY BAR — AUTH CSS (Perfect Premium & Fully Responsive)
+   File: style/auth.css
+   ============================================================ */
+
+.auth-page { 
+  min-height: 100vh; 
+  display: flex; 
+  flex-direction: column; 
+  background-color: var(--clr-white);
+}
+
+.auth-back {
+  padding: var(--sp-4) var(--sp-6);
+  background-color: var(--clr-white);
+}
+
+/* Layout Grid Utama */
+.auth-layout {
+  display: grid; 
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+  margin-bottom: 80px; /* Ruang putih elegan sebelum menyentuh footer */
+}
+
+/* ============================================================
+   SISI KIRI: KOTAK HIJAU & GAMBAR MELAYANG OVERLAP
+   ============================================================ */
+.auth-left {
+  position: relative; 
+  height: 580px; 
+  background-color: #47A662; 
+  border-top-right-radius: 32px;    
+  border-bottom-right-radius: 32px; 
+}
+
+/* Motif Daun Latar Belakang */
+.auth-left__bg {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.12; 
+  border-top-right-radius: 32px;
+  border-bottom-right-radius: 32px;
+}
+
+/* Wadah Gambar yang Menggantung ke Kanan (Figma Match) */
+.auth-left__content-flat {
+  position: absolute;
+  z-index: 10; 
+  top: 50%;
+  right: -120px; /* Menarik gambar melayang keluar dari area hijau */
+  transform: translateY(-50%); 
+  width: 340px; 
+}
+
+.auth-left__flat-card-img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  border-radius: 24px; 
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15); 
+}
+
+/* ============================================================
+   SISI KANAN: AREA FORM INPUT
+   ============================================================ */
+.auth-right {
+  display: flex; 
+  align-items: center; 
+  justify-content: center;
+  /* Jarak padding kiri sengaja diberi 180px agar form tidak tertimpa gambar melayang */
+  padding: var(--sp-8) var(--sp-16) var(--sp-8) 180px; 
+  background: var(--clr-white);
+}
+
+.auth-form-wrap { 
+  width: 100%; 
+  max-width: 380px; 
+}
+
+.auth-eyebrow {
+  font-family: 'Covered By Your Grace', cursive;
+  font-size: var(--fs-xl); 
+  font-weight: 400;
+  color: #CC9933; 
+  margin-bottom: 6px;
+  display: block;
+}
+
+.auth-title { 
+  font-size: var(--fs-2xl); 
+  font-weight: var(--fw-extrabold); 
+  color: var(--clr-gray-900);
+  margin-bottom: var(--sp-6); 
+}
+
+.auth-form { 
+  display: flex; 
+  flex-direction: column; 
+  gap: var(--sp-4); 
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px; 
+}
+
+.form-label {
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
+  color: var(--clr-gray-700);
+}
+
+.form-input {
+  width: 100%;
+  padding: 12px 16px; 
+  border: 1px solid #E5E7EB;
+  border-radius: var(--radius-md);
+  font-size: var(--fs-sm);
+  background-color: #F9FAFB; 
+  outline: none;
+  transition: all var(--transition-fast);
+}
+
+.form-input:focus {
+  border-color: #47A662;
+  background-color: var(--clr-white);
+}
+
+/* CONTAINER TOMBOL DI TENGAH FORM */
+.auth-btn-container {
+  display: flex;
+  justify-content: center; 
+  margin-top: var(--sp-3);
+  width: 100%;
+}
+
+.auth-btn {
+  width: auto; 
+  min-width: 180px; 
+  padding: 12px 42px; 
+  background: #47A662; 
+  color: #fff;
+  border: none; 
+  border-radius: 50px; 
+  font-size: var(--fs-sm); 
+  font-weight: var(--fw-bold);
+  letter-spacing: 0.5px; 
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  box-shadow: 0 4px 12px rgba(71, 166, 98, 0.2);
+}
+
+.auth-btn:hover { 
+  background: #3B8B52; 
+  transform: translateY(-1px); 
+}
+
+.auth-switch {
+  text-align: center; 
+  font-size: var(--fs-xs); 
+  color: var(--clr-gray-500);
+  margin-top: var(--sp-4);
+}
+
+.auth-switch a { 
+  color: #47A662; 
+  font-weight: var(--fw-bold); 
+  text-decoration: none;
+}
+
+.auth-switch a:hover { 
+  text-decoration: underline; 
+}
+
+
+/* ============================================================
+   KUNCI JAWABAN: BREAKPOINT RESPONSIVE (MEDIA QUERIES)
+   ============================================================ */
+
+/* Saat layar mulai mengecil (Lebar di bawah 1100px - Laptop Kecil/Tablet) */
+@media (max-width: 1100px) {
+  /* Kurangi sedikit geseran gambar agar tidak memakan ruang tengah berlebihan */
+  .auth-left__content-flat {
+    right: -80px;
+    width: 300px;
+  }
+  .auth-right {
+    padding-left: 120px;
+  }
+}
+
+/* KUNCI UTAMA: Saat layar di bawah 992px (Mode Tablet Tegak & HP) */
+@media (max-width: 992px) {
+  .auth-layout { 
+    grid-template-columns: 1fr; /* Ubah grid menjadi 1 kolom penuh */
+    margin-bottom: 40px;
+  }
+  
+  /* Hilangkan total area hijau beserta gambar buah melayangnya agar tidak menutupi form! */
+  .auth-left { 
+    display: none !important; 
+  }
+  
+  /* Form kanan otomatis mengambil alih seluruh layar dan padding-left dikembalikan normal */
+  .auth-right { 
+    padding: var(--sp-6) var(--sp-6); 
+    width: 100%;
+  }
+  
+  .auth-form-wrap {
+    max-width: 460px; /* Biarkan form sedikit melebar proporsional di layar HP */
+    margin: 0 auto;
+  }
+}

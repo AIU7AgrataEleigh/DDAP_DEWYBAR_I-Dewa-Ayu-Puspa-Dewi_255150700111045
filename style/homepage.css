@@ -1,0 +1,812 @@
+/* ============================================================
+   DEWY BAR — HOMEPAGE CSS
+   File: style/homepage.css
+   ============================================================ */
+
+/* --- HERO --- */
+.hero {
+  position: relative; height: 100vh; min-height: 560px;
+  display: flex; align-items: center;
+  overflow: hidden;
+}
+.hero__bg {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
+.hero__overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to right, rgba(0,0,0,0.65) 50%, rgba(0,0,0,0.2));
+}
+.hero__content {
+  position: relative; z-index: 2;
+  padding-left: var(--sp-16);
+  max-width: 600px;
+}
+.hero__title {
+  font-size: var(--fs-3xl); font-weight: var(--fw-extrabold);
+  color: var(--clr-white); line-height: 1.1; margin-bottom: var(--sp-6);
+}
+.hero__title .accent { color: var(--clr-accent); font-family: var(--font-display); }
+.hero__subtitle { font-size: var(--fs-md); color: rgba(255,255,255,0.85); margin-bottom: var(--sp-8); }
+.hero__btns { display: flex; gap: var(--sp-4); flex-wrap: wrap; }
+
+/* Scroll indicator */
+.hero__scroll-dot {
+  position: absolute; bottom: var(--sp-8); left: 50%;
+  transform: translateX(-50%);
+  width: 28px; height: 48px;
+  border: 2px solid rgba(255,255,255,0.5);
+  border-radius: 14px;
+  display: flex; justify-content: center; padding-top: 8px; z-index: 2;
+}
+.hero__scroll-dot::before {
+  content: ''; width: 4px; height: 8px;
+  background: #fff; border-radius: 2px;
+  animation: scrollDot 1.6s ease-in-out infinite;
+}
+@keyframes scrollDot { 0%,100% { transform: translateY(0); opacity:1; } 50% { transform: translateY(8px); opacity:0; } }
+
+/* --- WELCOME SECTION --- */
+.welcome-section { padding: var(--sp-20) 0; background: #fff; }
+
+
+.welcome-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: var(--sp-16); align-items: center;
+}
+.welcome-eyebrow {
+  font-size: var(--fs-xs); font-weight: var(--fw-bold);
+  color: var(--clr-primary); letter-spacing: 3px;
+  text-transform: uppercase; margin-bottom: var(--sp-3);
+}
+.welcome-title { font-size: var(--fs-2xl); font-weight: var(--fw-extrabold); margin-bottom: var(--sp-6); }
+.welcome-text { color: var(--clr-gray-700); line-height: 1.8; margin-bottom: var(--sp-6); font-weight: var(--fw-medium); }
+.welcome-links { display: flex; gap: var(--sp-4); flex-wrap: wrap; }
+.welcome-img-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr; gap: var(--sp-3);
+  height: 380px;
+}
+.welcome-img { border-radius: var(--radius-lg); overflow: hidden; }
+.welcome-img img { width: 100%; height: 100%; object-fit: cover; }
+.welcome-img--tall { grid-row: span 2; }
+
+/* --- TEAM SECTION --- */
+.team-section { padding: var(--sp-20) 0; background: var(--clr-gray-100); }
+.team-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--sp-6); margin-top: var(--sp-12); }
+.team-card { text-align: center; }
+.team-card__img-wrap {
+  width: 120px; height: 120px; border-radius: 50%; overflow: hidden;
+  margin: 0 auto var(--sp-4);
+  border: 3px solid var(--clr-primary);
+}
+.team-card__img { width: 100%; height: 100%; object-fit: cover; }
+.team-card__name { font-weight: var(--fw-extrabold); font-size: var(--fs-base); margin-bottom: var(--sp-1); }
+.team-card__role { font-size: var(--fs-xs); color: var(--clr-gray-400); }
+
+/* --- WHAT WE OFFER --- */
+.offer-section { padding: var(--sp-20) 0; background: #fff; }
+.offer-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sp-6); margin-top: var(--sp-12); }
+.offer-card { padding: var(--sp-8); text-align: center; border-radius: var(--radius-xl); background: var(--clr-gray-100); transition: all var(--transition-normal); }
+.offer-card:hover { background: var(--clr-primary-light); transform: translateY(-4px); }
+.offer-card__icon { width: 80px; height: 80px; border-radius: var(--radius-lg); overflow: hidden; margin: 0 auto var(--sp-5); }
+.offer-card__icon img { width: 100%; height: 100%; object-fit: cover; }
+.offer-card__title { font-weight: var(--fw-extrabold); margin-bottom: var(--sp-3); }
+.offer-card__text  { font-size: var(--fs-sm); color: var(--clr-gray-500); line-height: 1.7; }
+
+/* ==========================================================================
+   CSS UNTUK SECTION "OUR PRODUCT" KATEGORI (SESUAI GAMBAR KEDUA)
+   ========================================================================== */
+
+.product-categories-section {
+  padding: 80px 0;
+  background-color: #ffffff;
+}
+
+/* ── HEADER STYLE ── */
+.product-categories-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.product-categories-subtitle {
+  font-family: var(--font-display), cursive, sans-serif;
+  font-size: 18px;
+  color: #7BB343; /* Warna hijau khas Dewy Bar */
+  display: block;
+  margin-bottom: 5px;
+}
+
+.product-categories-title {
+  font-size: 36px;
+  font-weight: 700;
+  color: #1f1f1f;
+  position: relative;
+  display: inline-block;
+}
+
+/* Garis dekorasi hijau kecil di bawah tulisan Our Product */
+.product-categories-title::after {
+  content: '';
+  position: absolute;
+  bottom: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 45px;
+  height: 3px;
+  background-color: #7BB343;
+}
+
+/* ── LAYOUT GRID (4 KOLOM BERJAJAR) ── */
+.product-categories-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 10px;
+}
+
+/* ── ITEM KATEGORI INDIVIDUAL ── */
+.category-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Meratakan text ke kiri sesuai mockup gambar kedua */
+  text-align: left;
+  width: 100%;
+}
+
+/* Frame Gambar Melengkung Sempurna */
+.category-item__image {
+  width: 100%;
+  aspect-ratio: 1 / 1; /* Memastikan rasio gambar kotak sempurna persegi */
+  border-radius: 16px; /* Sudut tumpul halus sesuai gambar */
+  overflow: hidden;
+  margin-bottom: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.category-item__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+/* Efek Hover Halus saat Gambar Disentuh */
+.category-item:hover .category-item__image {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(123, 179, 67, 0.15);
+}
+
+.category-item:hover .category-item__image img {
+  transform: scale(1.06);
+}
+
+/* Teks Nama Kategori Menu */
+.category-item__name {
+  font-size: 16px;
+  font-weight: 700;
+  color: #1f1f1f;
+  margin: 0;
+  padding-left: 2px;
+}
+
+/* ── RESPONSIVE MEDIA QUERIES ── */
+@media (max-width: 992px) {
+  .product-categories-grid {
+    grid-template-columns: repeat(2, 1fr); /* Menjadi 2x2 di tablet */
+    gap: 20px;
+  }
+  .product-categories-title {
+    font-size: 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  .product-categories-grid {
+    grid-template-columns: repeat(2, 1fr); /* Tetap 2 kolom di HP agar tidak terlalu memanjang */
+    gap: 15px;
+  }
+  .category-item__name {
+    font-size: 14px;
+  }
+}
+
+/* --- ECO BANNER (UPDATED FOR FLAT EXPORTED IMAGE) --- */
+.eco-banner {
+  position: relative;
+  width: 100%;
+  padding: 0;          /* Menghilangkan padding agar tinggi murni mengikuti gambar */
+  overflow: hidden;
+  line-height: 0;      /* Menghilangkan whitespace sisa di bawah gambar */
+}
+
+.eco-banner__bg {
+  position: relative;  /* Mengubah dari absolute ke relative agar kontainer ikut melar mengikuti tinggi gambar */
+  width: 100%;
+  height: auto;        /* Memastikan gambar tidak gepeng dan rasionya proporsional */
+  object-fit: contain; /* Memastikan seluruh bagian gambar terlihat utuh tanpa terpotong */
+  filter: none;        /* Menghilangkan efek brightness bawaan agar warna asli figma keluar */
+}
+
+/* Menyembunyikan/menonaktifkan sisa selektor teks lama yang sudah menyatu di gambar */
+.eco-banner__content,
+.eco-banner__title {
+  display: none;
+}
+
+/* ==========================================================================
+   COMBINED TESTIMONIAL & PROMO SECTION (MATCHING HI-FI MAP)
+   ========================================================================== */
+
+/* Container utama pembungkus background doodle putih */
+.testimonial-promo-container {
+  width: 100%;
+  /* Ganti url() di bawah dengan path gambar background doodle putih kamu */
+  background-image: url('../img/bg-doodle-putih.png'); 
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding-bottom: 80px; 
+}
+
+/* ── STYLE TESTIMONI ── */
+.testi-section {
+  padding: 80px 0 40px 0;
+  max-width: 1140px;
+  margin: 0 auto;
+}
+
+.testi-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.testi-subtitle {
+  font-family: var(--font-display), cursive, sans-serif;
+  font-size: 18px;
+  color: #b5c45b;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.testi-title {
+  font-size: 38px;
+  font-weight: 700;
+  color: #1f1f1f;
+  margin: 0;
+  position: relative;
+  display: inline-block;
+}
+
+/* Garis dekorasi hijau kecil di bawah tulisan What They Say */
+.testi-title::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 3px;
+  background-color: #7BB343;
+}
+
+/* Layout Grid Kartu Testi bersandingan */
+.testi-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  padding: 0 20px;
+}
+
+/* Card Testimonial dengan border tipis melengkung */
+.testi-card {
+  background: #ffffff;
+  border: 1px solid #dcdcdc;
+  border-radius: 20px; 
+  padding: 30px;
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  position: relative;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+}
+
+/* Bungkus foto profil & dot bulatan hijau */
+.testi-avatar-wrap {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.testi-card__avatar {
+  width: 90px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 12px; 
+}
+
+/* Bulatan hijau kecil menempel di samping foto profil */
+.badge-dot {
+  position: absolute;
+  right: -10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 24px;
+  height: 24px;
+  background-color: #55b343;
+  border-radius: 50%;
+}
+
+.testi-card__content {
+  display: flex;
+  flex-direction: column;
+}
+
+.testi-card__text {
+  font-size: 14px;
+  color: #4a4a4a;
+  line-height: 1.6;
+  margin: 0 0 10px 0;
+  text-align: left;
+}
+
+.testi-card__name {
+  font-size: 14px;
+  font-weight: 700;
+  color: #1f1f1f;
+  margin: 0;
+  text-align: left;
+}
+
+/* ── STYLE BANNER PROMO FLAT (TANPA OVERLAY) ── */
+.promo-banner-flat {
+  max-width: 1140px;
+  margin: 40px auto 0 auto;
+  padding: 0 20px;
+}
+
+.promo-banner-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 24px; 
+  line-height: 0;      
+}
+
+.promo-flat-img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  filter: none !important; /* Bersih total dari efek hitam */
+}
+
+/* Tombol Transparan Melayang Tepat Diatas Tombol Gambar Bawaan Figma */
+.promo-clickable-link {
+  position: absolute;
+  bottom: 12%;       /* Mengatur posisi vertikal tombol di atas gambar */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 160px;       /* Lebar area klik tombol */
+  height: 44px;      /* Tinggi area klik tombol */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent; 
+  color: transparent;      
+  text-decoration: none;
+  cursor: pointer;
+  z-index: 5;
+}
+
+/* Responsivitas Layar Tablet / HP */
+@media (max-width: 992px) {
+  .testi-grid {
+    grid-template-columns: 1fr; 
+    gap: 25px;
+  }
+  .testi-title {
+    font-size: 30px;
+  }
+}
+
+/* --- CONTACT SECTION --- */
+.contact-section { padding: var(--sp-20) 0; background: #fff; }
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-16); align-items: start; }
+.contact-map { border-radius: var(--radius-lg); overflow: hidden; height: 300px; box-shadow: var(--shadow-md); }
+.contact-map iframe { width: 100%; height: 100%; border: 0; }
+.contact-form-title { font-size: var(--fs-xl); font-weight: var(--fw-extrabold); margin-bottom: var(--sp-6); }
+.contact-form { display: flex; flex-direction: column; gap: var(--sp-4); }
+
+/* --- RESPONSIVE --- */
+@media (max-width: 992px) {
+  .hero__content    { padding-left: var(--sp-8); }
+  .welcome-grid     { grid-template-columns: 1fr; }
+  .welcome-img-grid { height: 280px; }
+  .team-grid        { grid-template-columns: repeat(2, 1fr); }
+  .offer-grid       { grid-template-columns: 1fr 1fr; }
+  .product-grid     { grid-template-columns: repeat(2, 1fr); }
+  .testi-grid       { grid-template-columns: 1fr; }
+  .contact-grid     { grid-template-columns: 1fr; }
+}
+@media (max-width: 768px) {
+  .hero             { height: 80vh; }
+  .hero__content    { padding-left: var(--sp-4); }
+  .hero__title      { font-size: var(--fs-2xl); }
+  .hero__btns       { flex-direction: column; }
+  .team-grid        { grid-template-columns: repeat(2, 1fr); }
+  .offer-grid       { grid-template-columns: 1fr; }
+  .product-grid     { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ==========================================================================
+   CSS WHAT WE OFFER — PRODUCT CARD STYLE (SUDUT KOTAK TEGAS)
+   ========================================================================== */
+
+.offer-section {
+  padding: 80px 0;
+  background-color: #fcfbf7; /* Background krem halus sesuai mockup */
+}
+
+.offer-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.offer-subtitle {
+  font-family: var(--font-display), cursive, sans-serif;
+  font-size: 18px;
+  color: #b5c45b; /* Warna hijau muda kecokelatan sesuai mockup gambar 1 */
+  display: block;
+  margin-bottom: 5px;
+}
+
+.offer-title {
+  font-size: 38px;
+  font-weight: 700;
+  color: #1f1f1f;
+  margin: 0;
+}
+
+/* Layout Grid 3 Kolom */
+.offer-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+/* Komponen Kartu Utama (Ujung Kotak/Tidak Tumpul) */
+.offer-product-card {
+  background: #ffffff;
+  border-radius: 0px; /* <--- MEMBUAT UJUNG TIDAK TUMPUL (KOTAK TEGAS) */
+  overflow: visible; /* Diperlukan agar badge ikon bisa sedikit keluar dari gambar */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.offer-product-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+}
+
+/* Container Gambar */
+.offer-product-card__image-box {
+  position: relative;
+  width: 100%;
+  height: 240px; /* Atur tinggi gambar */
+  overflow: hidden;
+}
+
+.offer-product-card__image-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0px; /* <--- Gambar juga diseting kotak sempurna */
+}
+
+/* Badge Ikon Hijau Menggantung di Sudut Kanan Bawah Gambar */
+.offer-product-card__icon-badge {
+  position: absolute;
+  bottom: -15px;
+  right: 25px;
+  width: 50px;
+  height: 50px;
+  background-color: #b5c45b; /* Warna hijau penanda ikon */
+  border-radius: 4px; /* Sedikit tumpul di ikon agar manis seperti gambar asli */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.offer-product-card__icon-badge img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+}
+
+/* Konten Teks di Dalam Kartu */
+.offer-product-card__content {
+  padding: 35px 25px 30px 25px;
+  text-align: center; /* Teks rata tengah sesuai mockup asli */
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.offer-product-card__title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #1f1f1f;
+  margin: 0 0 12px 0;
+}
+
+.offer-product-card__desc {
+  font-size: 14px;
+  color: #666666;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ── RESPONSIVE RESPONSIVITAS ── */
+@media (max-width: 992px) {
+  .offer-grid {
+    grid-template-columns: repeat(2, 1fr); /* Menjadi 2 kolom di tablet */
+    gap: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .offer-grid {
+    grid-template-columns: 1fr; /* Menjadi 1 kolom memanjang di HP */
+    max-width: 400px;
+  }
+}
+
+/* ==========================================================================
+   CSS UNTUK "CTA BANNER WITH IMAGE PROMO" (TANPA KOTAK SISA)
+   ========================================================================== */
+
+/* ── WRAPPER SECTION UTAMA ── */
+.cta-wrapper-section {
+  padding: 80px 0;
+  background-color: #ffffff;
+}
+
+/* Item Gambar Murni - Dipastikan Bersih Tanpa Border/Kotak Sisa */
+.promo-image-item {
+  width: 100%;
+  display: block;
+  padding: 0;
+  margin: 0;
+  border: none !important;
+  background: none !important;
+  box-shadow: none !important;
+}
+
+/* File Gambar Mengikuti Lebar Kolom Grid Secara Sempurna */
+.promo-img-fluid {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+}
+
+/* ── BANNER UTAMA (Di bawah gambar melayang) ── */
+.cta-banner-new {
+  position: relative;
+  border-radius: 30px;
+  padding: 120px 40px 80px 40px; /* Atas longgar agar tidak tertutup gambar promo */
+  overflow: hidden;
+  text-align: center;
+}
+
+.cta-banner-new__bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cta-banner-new__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45); /* Mengatur kegelapan backdrop banner */
+  z-index: 1;
+}
+
+.cta-banner-new__content {
+  position: relative;
+  z-index: 2;
+  color: #ffffff;
+}
+
+.cta-banner-new__eyebrow {
+  font-size: 18px;
+  color: #F9BC06;
+  font-weight: 600;
+  letter-spacing: 1px;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.cta-banner-new__title {
+  font-size: 36px;
+  font-weight: 800;
+  line-height: 1.3;
+  margin-bottom: 35px;
+}
+
+/* ── TOMBOL HIJAU BULAT LEMBUT (SHOP NOW) ── */
+.btn-shop-now {
+  background-color: #7BB343 !important;
+  color: #ffffff !important;
+  font-weight: 700;
+  font-size: 16px;
+  padding: 14px 45px;
+  border-radius: 30px;
+  border: none;
+  transition: all 0.3s ease;
+  display: inline-block;
+  text-decoration: none;
+  box-shadow: 0 8px 20px rgba(123, 179, 67, 0.3);
+}
+
+.btn-shop-now:hover {
+  background-color: #659635 !important;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(123, 179, 67, 0.4);
+}
+
+/* Responsive Breakpoints saat Layar HP / Tablet */
+@media (max-width: 992px) {
+  .promo-image-grid {
+    grid-template-columns: 1fr;
+    margin-bottom: -30px;
+    gap: 20px;
+  }
+  .cta-banner-new {
+    padding-top: 70px;
+  }
+  .cta-banner-new__title {
+    font-size: 26px;
+  }
+}
+
+.offer-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.hero {
+  height: 100vh;
+}
+
+.hero__bg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .hero {
+    height: 70vh;
+  }
+}
+
+.promo-image-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.promo-image-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (max-width: 768px) {
+  .promo-image-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.product-categories-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+
+.eco-banner__bg {
+  width: 100%;
+  height: auto;
+}
+
+.testi-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+@media (max-width: 768px) {
+  .testi-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.promo-banner-container {
+  position: relative;
+}
+
+.promo-flat-img {
+  width: 100%;
+  height: auto;
+}
+
+.promo-clickable-link {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+}
+
+@media (max-width: 768px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.delay-1 { animation-delay: 0.1s; }
+.delay-2 { animation-delay: 0.2s; }
+.delay-3 { animation-delay: 0.3s; }
+
+@media (max-width: 768px) {
+  .animate-fadeInUp {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+.cart-container {
+  display: flex;
+  gap: 20px;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .cart-container {
+    flex-direction: column;
+  }
+}
+
+.cart-page__item {
+  display: flex;
+  gap: 15px;
+}
+
+@media (max-width: 576px) {
+  .cart-page__item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

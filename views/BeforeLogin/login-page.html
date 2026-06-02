@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login — Dewy Bar</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="../../style/global.css">
+  <link rel="stylesheet" href="../../style/footer.css">
+  <link rel="stylesheet" href="../../style/auth.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cover&family=Covered+By+Your+Grace&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- Back button -->
+<div class="auth-back">
+  <a href="../../index.html" class="back-pill"><i class="bi bi-arrow-left"></i> Back To Home</a>
+</div>
+
+<div class="auth-layout">
+  
+<div class="auth-left">
+  <img src="../../assets/img/login-register/bg-hijau.png" alt="Pattern" class="auth-left__bg">
+  
+  <div class="auth-left__content-flat">
+    <img src="../../assets/img/login-register/sayur-kol.png" alt="Please Fill Your Data" class="auth-left__flat-card-img">
+  </div>
+</div>
+
+  <div class="auth-right">
+    <div class="auth-form-wrap">
+      <span class="auth-eyebrow">May We Know Who Are You?</span>
+      <h2 class="auth-title">Selamat Datang Kembali</h2>
+      
+      <form class="auth-form" id="loginForm" onsubmit="event.preventDefault(); handleLogin();">
+        <div class="auth-alert error" id="loginError"></div>
+        
+        <div class="form-group">
+          <label class="form-label">Nama</label>
+          <input type="text" id="loginName" class="form-input" placeholder="Silahkan Isi Nama Kamu">
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label">Email</label>
+          <input type="email" id="loginEmail" class="form-input" placeholder="Format: @gmail.com">
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label">Password</label>
+          <input type="password" id="loginPassword" class="form-input" placeholder="Isikan Password">
+        </div>
+        
+        <button type="submit" class="auth-btn" id="loginBtn">LOGIN</button>
+      </form>
+      
+      <p class="auth-switch">Belum punya akun? <a href="regist-page.html">Sign Up</a></p>
+    </div>
+  </div>
+
+</div>
+
+<!-- Footer -->
+<div id="footer-container"></div>
+
+<script src="../../javascript/auth.js"></script>
+<script src="../../javascript/main.js"></script>
+<script>
+function togglePass(id, btn) {
+  const input = document.getElementById(id);
+  const isPass = input.type === 'password';
+  input.type = isPass ? 'text' : 'password';
+  btn.innerHTML = isPass ? '<i class="bi bi-eye-slash"></i>' : '<i class="bi bi-eye"></i>';
+}
+/* Enter key submit */
+document.addEventListener('keydown', e => { if (e.key === 'Enter') handleLogin(); });
+</script>
+</body>
+</html>

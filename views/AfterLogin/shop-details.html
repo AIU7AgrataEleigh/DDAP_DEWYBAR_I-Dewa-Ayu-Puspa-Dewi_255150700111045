@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detail Produk — Dewy Bar</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  
+  <link rel="stylesheet" href="../../style/global.css">
+  <link rel="stylesheet" href="../../style/navbar.css">
+  <link rel="stylesheet" href="../../style/header.css">
+  <link rel="stylesheet" href="../../style/footer.css">
+  <link rel="stylesheet" href="../../style/pages.css">
+  
+  <style>
+    /* ==========================================
+       CSS UTAMA BAGIAN INTI & DETAIL PRODUK
+       ========================================== */
+    .details-info__boxed-rows {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin-bottom: 25px;
+    }
+    .details-info__boxed-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .details-info__label {
+      font-weight: 700;
+      color: #1e1e1e;
+      min-width: 120px;
+    }
+    .boxed-item {
+      background: #ffffff;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      padding: 5px 10px;
+      font-size: 14px;
+      font-weight: 600;
+      color: #757575;
+    }
+    .boxed-sig-img {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      padding: 0;
+    }
+    .boxed-sig-img img {
+      width: 24px;
+      height: 24px;
+      object-fit: contain;
+    }
+    .boxed-menu-item, .boxed-calorie-item {
+      padding: 5px 15px;
+    }
+    .simplified-qty {
+      margin-top: 15px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    .boxed-qty-control {
+      background: #ffffff;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      padding: 5px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .boxed-qty-btn {
+      width: 24px;
+      height: 24px;
+      border: none;
+      background: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: #757575;
+    }
+    .boxed-qty-display {
+      font-weight: 800;
+      font-size: 16px;
+      color: #1e1e1e;
+      min-width: 20px;
+      text-align: center;
+    }
+    .btn-tambah {
+      padding: 8px 25px;
+      background-color: #49A760;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 14px;
+      cursor: pointer;
+      text-transform: uppercase;
+    }
+
+    .details-bottom-full-layout {
+      display: flex;
+      flex-direction: column;
+      gap: 35px;
+      padding: 40px 0;
+      border-top: 1px solid #e2e8f0;
+      margin-top: 40px;
+    }
+    .details-desc__title, 
+    .nutrition-section__title,
+    .farmer-section__title {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #1e1e1e;
+      margin-bottom: 20px;
+    }
+    .details-desc__subtitle, .benefits-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #1e1e1e;
+      margin-top: 25px;
+      margin-bottom: 15px;
+    }
+    .details-desc__text {
+      font-size: 14px;
+      color: #555555;
+      line-height: 1.8;
+      margin: 0;
+    }
+    
+    /* Container utama grid */
+    .composition-grid {
+      display: flex;
+      gap: 25px; /* Jarak antar grup buah */
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    /* Wrapper untuk satu set gambar + kotak nama */
+    .composition-item-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 10px; /* Jarak antara gambar dan kotak */
+    }
+
+    /* Gambar di luar kotak */
+    .composition-img {
+      width: 35px; /* Sesuaikan ukuran gambar */
+      height: 35px;
+      object-fit: contain;
+    }
+
+    /* Kotak untuk nama buah */
+    .composition-item-box {
+      background: #ffffff;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      padding: 6px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #757575;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05); /* Sedikit bayangan agar rapi */
+    }
+
+    .composition-item {
+      background: #ffffff;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      padding: 6px 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .composition-item__icon {
+      width: 20px;
+      height: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .composition-item__icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+    .composition-item__name {
+      font-size: 13px;
+      font-weight: 600;
+      color: #757575;
+    }
+
+    .nutrition-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .nutrition-pill {
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .nutrition-pill.peach { background: #FF7878; color: #ffffff; border: 1px solid #FF7878; }
+    .nutrition-pill.yellow { background: #F6DA00; color: #ffffff; border: 1px solid #F6DA00; }
+    .nutrition-pill.pink   { background: #FF78DD; color: #ffffff; border: 1px solid #FF78DD; }
+    .nutrition-pill.purple { background: #D278FF; color: #ffffff; border: 1px solid #D278FF; }
+    
+    .benefits-list {
+      list-style: none;
+      padding-left: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .benefits-list li {
+      position: relative;
+      padding-left: 20px;
+      font-size: 14px;
+      color: #757575;
+      line-height: 1.6;
+    }
+    .benefits-list li::before {
+      content: "•";
+      color: #7D7D7D;
+      font-weight: bold;
+      font-size: 1.4rem;
+      position: absolute;
+      left: 0;
+      top: -4px;
+    }
+
+    /* ==========================================
+       STRUKTUR FIX: FARMER PROFILE (DUA BIDANG)
+       ========================================== */
+    .farmer-section {
+      margin-top: 40px;
+      padding-top: 30px;
+      border-top: 1px solid #e2e8f0;
+      margin-bottom: 50px;
+    }
+    .farmer-card-detail {
+      display: flex;
+      align-items: flex-start;
+      gap: 25px;
+      background: none;
+      border: none;
+      padding: 0;
+    }
+    .farmer-card-detail__img {
+      width: 75px;
+      height: 75px;
+      border-radius: 50%;
+      object-fit: cover;
+      flex-shrink: 0;
+      border: 1px solid #e2e8f0;
+    }
+    .farmer-info-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    
+    /* Bidang Atas: Profil Kiri vs Produk Kanan */
+    .farmer-top-blocks {
+      display: flex;
+      align-items: flex-start;
+      gap: 40px;
+    }
+    
+    /* Blok Profil Vertikal */
+    .farmer-profile-block {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      min-width: 150px;
+    }
+    .farmer-card-detail__name {
+      font-size: 18px;
+      font-weight: 800;
+      color: #1e1e1e;
+      margin: 0;
+    }
+    .farmer-card-detail__age {
+      font-size: 13.5px;
+      color: #888888;
+      font-weight: 500;
+      margin: 0;
+    }
+    .farmer-card-detail__loc {
+      font-size: 14px;
+      color: #49A760; 
+      font-weight: 700;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* Blok Produk */
+    .farmer-products-block {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .farmer-products-label {
+      font-size: 14px;
+      font-weight: 700;
+      color: #1e1e1e;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .farmer-products-label svg {
+      width: 16px;
+      height: 16px;
+    }
+    .farmer-products-imgs {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .farmer-products-imgs img {
+      width: 26px;
+      height: 26px;
+      object-fit: contain;
+    }
+
+    /* Bidang Bawah: Deskripsi & CTA Button */
+    .farmer-bottom-wrapper {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 20px;
+      margin-top: 5px;
+    }
+    .farmer-card-detail__desc {
+      font-size: 13.5px;
+      color: #555555;
+      line-height: 1.6;
+      margin: 0;
+      flex: 1;
+      max-width: 800px;
+    }
+    .farmer-section__cta {
+      flex-shrink: 0;
+    }
+    .farmer-section__cta .btn-see-more {
+      background-color: #49A760;
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 12px;
+      padding: 10px 24px;
+      border: none;
+      border-radius: 50px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      transition: background-color 0.2s, transform 0.1s;
+    }
+    .farmer-section__cta .btn-see-more:hover {
+      background-color: #3b874d;
+    }
+    .farmer-section__cta .btn-see-more:active {
+      transform: scale(0.98);
+    }
+
+    /* FIX NAVBAR: Latar belakang gelap solid #4D4D4D */
+    /* 1. Paksa warna navbar agar konsisten #4D4D4D dan hapus blur transparan */
+    .navbar {
+        background: #4D4D4D !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
+    }
+
+    /* 2. Sesuaikan warna teks dan link agar terlihat jelas di atas background gelap */
+    .navbar__menu-link, 
+    .navbar__phone, 
+    .navbar__cart {
+        color: #ffffff !important;
+    }
+
+    /* 3. Sesuaikan ikon dan elemen lain */
+    .navbar__icon-wrapper, .navbar__cart {
+        color: #ffffff !important;
+    }
+
+    /* 4. Sesuaikan hamburger menu */
+    .navbar__hamburger span {
+        background: #ffffff !important;
+    }
+    .navbar__hamburger.open span:nth-child(1) { transform: translateY(7.5px) rotate(45deg) !important; }
+    .navbar__hamburger.open span:nth-child(2) { opacity: 0 !important; transform: scaleX(0) !important; }
+    .navbar__hamburger.open span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg) !important; }
+
+    .navbar__social-circle {
+      background: rgba(255, 255, 255, 0.15) !important;
+      color: #ffffff !important;
+    }
+
+    /* ============================================================
+    RESPONSIVE – SHOP DETAILS
+    Tambahkan bagian ini di dalam <style> shop-details.html
+    tepat sebelum tag </style>
+    ============================================================ */
+
+    /* TABLET (≤ 992px) */
+    @media (max-width: 992px) {
+        .farmer-top-blocks {
+            flex-direction: column;     /* dari horizontal menjadi vertikal */
+            gap: 15px;
+        }
+        .farmer-profile-block {
+            min-width: unset;           /* Hapus lebar minimum agar tidak meluber */
+        }
+        .farmer-bottom-wrapper {
+            flex-direction: column;     /* Deskripsi & tombol jadi vertikal */
+            align-items: flex-start;
+            gap: 15px;
+        }
+        .farmer-card-detail__desc {
+            max-width: 100%;            /* Pakai lebar penuh di tablet */
+        }
+        .details-info__boxed-group {
+            flex-wrap: wrap;            /* Agar tag tidak meluber */
+        }
+    }
+
+    /* HP KECIL (≤ 768px) */
+    @media (max-width: 768px) {
+        .farmer-card-detail {
+            flex-direction: column;     /* Foto + info profil menjadi vertikal */
+            align-items: flex-start;
+        }
+        .farmer-card-detail__img {
+            width: 60px;
+            height: 60px;
+        }
+        .details-info__label {
+            min-width: 100px;           /* Kurangi lebar label di HP */
+        }
+        .simplified-qty {
+            flex-wrap: wrap;
+        }
+        .composition-grid {
+            gap: 12px;
+        }
+        .nutrition-pills {
+            gap: 6px;
+        }
+        .farmer-section__cta {
+            width: 100%;
+        }
+        .farmer-section__cta .btn-see-more {
+            width: 100%;
+            text-align: center;
+            padding: 12px;
+        }
+    }
+
+    /* HP SANGAT KECIL (≤ 480px) */
+    @media (max-width: 480px) {
+        .farmer-products-imgs img {
+            width: 20px;
+            height: 20px;
+        }
+        .details-desc__subtitle,
+        .benefits-title {
+            font-size: 1rem;
+        }
+    }
+
+  </style>
+</head>
+<body>
+
+<nav class="navbar" id="mainNavbar">
+  <div class="navbar__inner">
+    
+    <a href="../../index.html" class="navbar__logo">
+      <img src="../../assets/svg/logo_dewy_bar_putih.svg.svg" alt="Dewy Bar" class="navbar__logo-img">
+    </a>
+
+    <div class="navbar__social-group">
+      <a href="https://www.twitter.com" class="navbar__social-circle" target="_blank" title="Twitter">
+        <i class="bi bi-twitter-x"></i>
+      </a>
+      <a href="https://www.facebook.com" class="navbar__social-circle" target="_blank" title="Facebook">
+        <i class="bi bi-facebook"></i>
+      </a>
+      <a href="https://www.linkedin.com" class="navbar__social-circle" target="_blank" title="LinkedIn">
+        <i class="bi bi-linkedin"></i>
+      </a>
+      <a href="https://www.instagram.com" class="navbar__social-circle" target="_blank" title="Instagram">
+        <i class="bi bi-instagram"></i>
+      </a>
+    </div>
+
+    <ul class="navbar__nav-links navbar__nav-links--static">
+      <li><a href="../../index.html" class="navbar__menu-link">Home</a></li>
+      <li><a href="../../index.html#about" class="navbar__menu-link">About</a></li>
+      <li><a href="../../index.html#contact" class="navbar__menu-link">Contact</a></li>
+    </ul>
+
+    <ul class="navbar__nav-links navbar__nav-links--features">
+      <li><a href="katalog-produk-mentah.html" class="navbar__menu-link">Katalog</a></li>
+      <li><a href="smart-pre-order.html" class="navbar__menu-link">Smart Order</a></li>
+      <li><a href="jejak-petani.html" class="navbar__menu-link">Jejak Petani</a></li>
+    </ul>
+
+    <div class="navbar__actions">
+      
+      <div class="navbar__profile">
+        <div class="navbar__avatar-wrapper" id="userAvatar" onclick="toggleProfileDropdown()">
+          <img src="../../assets/img/homepage/logo_profile.img.png" alt="Profil" class="navbar__avatar">
+        </div>
+        <div class="navbar__dropdown" id="profileDropdown">
+          <div class="navbar__dropdown-name" id="userName">Pengguna</div>
+          <hr class="navbar__dropdown-divider">
+          <a href="profile-page.html" class="navbar__dropdown-item"><i class="bi bi-person"></i> Profil Saya</a>
+          <a href="keranjang.html" class="navbar__dropdown-item"><i class="bi bi-bag"></i> Keranjang</a>
+          <a href="smart-pre-order.html" class="navbar__dropdown-item"><i class="bi bi-calendar2-check"></i> Smart Order</a>
+          <hr class="navbar__dropdown-divider">
+          <a href="#" class="navbar__dropdown-item navbar__dropdown-item--danger" onclick="handleLogout()"><i class="bi bi-box-arrow-right"></i> Logout</a>
+        </div>
+      </div>
+
+      <a href="keranjang.html" class="navbar__cart" title="Keranjang">
+        <span class="navbar__icon-wrapper"><i class="bi bi-bag-fill"></i></span>
+        <span class="navbar__cart-badge" id="cartBadge" style="display:none;">0</span>
+      </a>
+
+      <div class="navbar__phone">
+        <span class="navbar__icon-wrapper"><i class="bi bi-telephone-fill"></i></span>
+        <span class="navbar__phone-number">+6287868889068</span>
+      </div>
+      
+      <button class="navbar__hamburger" id="hamburgerBtn">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<section class="details-hero" style="margin-top: 85px;"> 
+   <img src="../../assets/img/product-details/hero-product-details.png" alt="Hero Image">
+</section>
+
+<div class="container details-back mt-4">
+  <button class="back-pill" onclick="goBack()">
+  <i class="bi bi-arrow-left"></i> BACK
+</button>
+</div>
+
+<main class="details-section">
+  <div class="container">
+    
+    <div class="details-grid">
+      <div>
+        <div class="details-img-wrap">
+          <img src="../../assets/img/smart-pre-order/minty-strawberry.png" alt="Product" class="details-img" id="detailImg" onerror="this.src='../../assets/img/logo_profile.img.png'">
+        </div>
+      </div>
+
+      <div class="details-info__panel">
+        <div class="details-info__header">
+          <h2 class="details-info__name" id="detailName">Minty Strawberry</h2>
+          <span class="details-info__price" id="detailPrice">Rp14.000</span>
+        </div>
+
+        <div class="details-info__boxed-rows">
+          <div class="details-info__boxed-group">
+            <span class="details-info__label">Signature Of</span>
+            <div class="boxed-item boxed-sig-img">
+              <img src="../../assets/img/produk-petani/stroberi.png" alt="Stroberi" id="signatureImg">
+            </div>
+            <span class="details-info__label" style="min-width:auto; margin-left: 20px;">Menu</span>
+            <div class="boxed-item boxed-menu-item">Juice</div>
+          </div>
+
+          <div class="details-info__boxed-group">
+            <span class="details-info__label">Calorie in Total</span>
+            <div class="boxed-item boxed-calorie-item" id="detailCalorie">100 gram</div>
+          </div>
+        </div>
+
+        <div class="simplified-qty quantity-row">
+          <span class="details-info__label quantity-label">Choose Quantity</span>
+          <div class="boxed-qty-control quantity-control">
+            <button class="boxed-qty-btn qty-btn" id="qtyMinus">−</button>
+            <span class="boxed-qty-display qty-display" id="qtyDisplay">1</span>
+            <button class="boxed-qty-btn qty-btn" id="qtyPlus">+</button>
+          </div>
+          <button class="btn-tambah btn-add-cart" id="addToCartBtn">
+            <i class="bi bi-cart-plus"></i>&nbsp;TAMBAH
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="details-bottom-full-layout">
+      
+      <div class="details-desc">
+        <h3 class="details-desc__title">Description</h3>
+        <p class="details-desc__text" id="detailDesc">Nikmati perpaduan sempurna antara rasa asam-manis stroberi segar yang dipetik langsung dari lereng Gunung Semeru, Poncokusumo, dengan sentuhan daun mint yang menyejukkan. Jus ini diproses menggunakan metode cold-pressed untuk menjaga nutrisi asli buah tanpa tambahan gula berlebih. Cocok banget buat mahasiswa yang butuh mood booster di sela-sela jadwal kuliah yang padat!</p>
+        
+        <p class="details-desc__subtitle">Fruit Composition</p>
+        <div class="composition-grid" id="compositionGrid">
+          <div class="composition-item-wrapper">
+            <img src="../../assets/img/product-details/stroberi.png" alt="Stroberi" class="composition-img">
+            <div class="composition-item-box">Stroberi</div>
+          </div>
+
+          <div class="composition-item-wrapper">
+            <img src="../../assets/img/product-details/composition-lemon.png" alt="Lemon" class="composition-img">
+            <div class="composition-item-box">Lemon</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="nutrition-section">
+        <h3 class="nutrition-section__title">Nutrition Information</h3>
+        
+        <p class="details-desc__subtitle">Nutrition Facts</p>
+        <div class="nutrition-pills" id="nutritionPills">
+          <div class="nutrition-pill peach">Vit A</div>
+          <div class="nutrition-pill yellow">Vit B9</div>
+          <div class="nutrition-pill pink">Mangan</div>
+          <div class="nutrition-pill purple">Antioksidan</div>
+        </div>
+        
+        <p class="benefits-title">Benefits</p>
+        <ul class="benefits-list" id="benefitsList">
+          <li>Kandungan Vitamin C yang tinggi memperkuat sistem imun mahasiswa agar tidak mudah jatuh sakit di tengah jadwal kuliah yang padat</li>
+          <li>Aroma segar daun mint memberikan efek relaksasi pada saraf guna meningkatkan fokus dan kejernihan pikiran saat mengerjakan tugas</li>
+          <li>Antioksidan alami dari stroberi membantu menangkal radikal bebas sehingga kulit tetap terlihat segar dan sehat secara alami</li>
+          <li>Serat halus dari buah stroberi asli membantu melancarkan sistem pencernaan meskipun dikonsumsi dalam bentuk jus siap minum</li>
+          <li>Minuman ini memberikan asupan energi instan yang menyegarkan tanpa perlu khawatir dengan tumpukan kalori atau gula berlebih</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="farmer-section">
+      <h3 class="farmer-section__title">Farmer Profile</h3>
+      <div class="farmer-card-detail">
+        <img src="../../assets/img/product-details/budi-bulat.png" alt="Farmer" class="farmer-card-detail__img" id="farmerImg" onerror="this.src='../../assets/img/logo_profile.img.png'">
+        
+        <div class="farmer-info-content">
+          
+          <div class="farmer-top-blocks">
+            
+            <div class="farmer-profile-block">
+              <p class="farmer-card-detail__name" id="farmerName">Budi Santoso</p>
+              <p class="farmer-card-detail__age" id="farmerAge">48 Tahun</p>
+              <p class="farmer-card-detail__loc" id="farmerLokasi">
+                <i class="bi bi-geo-alt-fill"></i> Poncokusumo
+              </p>
+            </div>
+            
+            <div class="farmer-products-block">
+              <span class="farmer-products-label">
+                <img src ="../../assets/svg/icon-produk-hitam.svg" width="16" height="16" fill="currentColor" class="bi bi-box-seam" viewBox="0 0 16 16"></img>
+                Products 
+              </span>
+              <div class="farmer-products-imgs" id="farmerProductsImgs">
+                <img src="../../assets/img/produk-petani/pisang.png" alt="pisang" onerror="this.src='../../assets/img/produk-petani/stroberi.png'">
+                <img src="../../assets/img/produk-petani/apel.png" alt="apel" onerror="this.src='../../assets/img/logo_profile.img.png'">
+                <img src="../../assets/img/produk-petani/stroberi.png" alt="apel" onerror="this.src='../../assets/img/logo_profile.img.png'">
+              </div>
+            </div>
+
+          </div>
+          
+          <div class="farmer-bottom-wrapper">
+            <p class="farmer-card-detail__desc" id="farmerDesc">
+              Terima kasih telah memilih hasil panen asli Poncokusumo karena setiap botol yang kamu nikmati sangat membantu kesejahteraan keluarga kami.
+            </p>
+            
+            <div class="farmer-section__cta">
+              <a href="profil-petani.html" class="btn-see-more text-decoration-none" id="farmerDetailBtn">
+                LIHAT SELENGKAPNYA
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<div id="footer-container"></div>
+
+<div class="toast-notif" id="toastNotif"><i class="bi bi-check-circle-fill"></i><span id="toastMsg"></span></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../../javascript/auth.js"></script>
+<script src="../../javascript/cart.js"></script>
+<script src="../../javascript/navbar.js"></script>
+<script src="../../javascript/main.js"></script>
+<script src ="../../javascript/shopdetails.js"></script>
+
+<script>
+function goBack() {
+  if (document.referrer) {
+    history.back();
+  } else {
+    window.location.href = 'katalog-produk-jadi-buah.html';
+  }
+}
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const farmerBtn = document.getElementById('farmerDetailBtn');
+  
+  if (farmerBtn) {
+    farmerBtn.addEventListener('click', () => {
+      window.location.href = 'profil-petani.html'; // cek path!
+    });
+  }
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dewy Bar — Natural & Healthy</title>
+  <!-- Sembunyikan elemen after-login SEBELUM render untuk cegah flash -->
+  <style>
+    #navAfterLinks  { display: none !important; }
+    #afterLoginActions { display: none !important; }
+  </style>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="style/global.css">
+  <link rel="stylesheet" href="style/navbar.css">
+  <link rel="stylesheet" href="style/footer.css">
+  <link rel="stylesheet" href="style/homepage.css">
+  <style>
+    /* Homepage: navbar transparan di atas hero, putih saat scroll */
+    .navbar:not(.scrolled) {
+      background: transparent !important;
+      background-color: transparent !important;
+      box-shadow: none !important;
+      backdrop-filter: none !important;
+      -webkit-backdrop-filter: none !important;
+    }
+    .navbar:not(.scrolled) .navbar__menu-link,
+    .navbar:not(.scrolled) .navbar__phone-number,
+    .navbar:not(.scrolled) .navbar__dropdown-name { color: #ffffff !important; }
+    .navbar:not(.scrolled) .navbar__social-circle  { background: rgba(255,255,255,0.2) !important; color: #ffffff !important; }
+    .navbar:not(.scrolled) .navbar__icon-wrapper   { color: #ffffff !important; }
+    .navbar:not(.scrolled) .navbar__cart           { color: #ffffff !important; }
+    .navbar:not(.scrolled) .navbar__hamburger span { background: #ffffff !important; }
+    .navbar:not(.scrolled) .btn-nav-auth--login    { border-color: #fff !important; color: #fff !important; background: transparent !important; }
+    .navbar:not(.scrolled) .btn-nav-auth--signup   { background: #fff !important; border-color: #fff !important; color: var(--clr-primary) !important; }
+  </style>
+</head>
+<body>
+
+<nav class="navbar" id="mainNavbar">
+  <div class="navbar__inner">
+
+    <a href="index.html" class="navbar__logo">
+      <img src="assets/svg/logo_dewy_bar_putih.svg.svg" alt="Dewy Bar" class="navbar__logo-img">
+    </a>
+
+    <div class="navbar__social-group">
+      <a href="https://www.twitter.com/" class="navbar__social-circle" target="_blank"><i class="bi bi-twitter-x"></i></a>
+      <a href="https://www.facebook.com/" class="navbar__social-circle" target="_blank"><i class="bi bi-facebook"></i></a>
+      <a href="https://www.linkedin.com/" class="navbar__social-circle" target="_blank"><i class="bi bi-linkedin"></i></a>
+      <a href="https://www.instagram.com/" class="navbar__social-circle" target="_blank"><i class="bi bi-instagram"></i></a>
+    </div>
+
+    <ul class="navbar__nav-links navbar__nav-links--static" id="navMenu">
+      <li><a href="index.html" class="navbar__menu-link active">Home</a></li>
+      <li><a href="#about" class="navbar__menu-link">About</a></li>
+      <li><a href="#contact" class="navbar__menu-link">Contact</a></li>
+    </ul>
+
+    <ul class="navbar__nav-links navbar__nav-links--features" id="navAfterLinks">
+      <li><a href="views/AfterLogin/katalog-produk-mentah.html" class="navbar__menu-link">Katalog</a></li>
+      <li><a href="views/AfterLogin/smart-pre-order.html" class="navbar__menu-link">Smart Pre-Order</a></li>
+      <li><a href="views/AfterLogin/jejak-petani.html" class="navbar__menu-link">Jejak Petani</a></li>
+    </ul>
+
+    <div class="navbar__actions">
+
+      <div id="loginBtns" class="navbar__auth-buttons">
+        <a href="views/BeforeLogin/login-page.html" class="btn-nav-auth btn-nav-auth--login">Login</a>
+        <a href="views/BeforeLogin/regist-page.html" class="btn-nav-auth btn-nav-auth--signup">Sign Up</a>
+      </div>
+
+      <div id="afterLoginActions" style="align-items:center; gap:20px;">
+        <div class="navbar__profile">
+          <div class="navbar__avatar-wrapper" id="userAvatar" onclick="toggleProfileDropdown()">
+            <img src="assets/img/homepage/logo_profile.img.png" alt="Profil" class="navbar__avatar">
+          </div>
+          <div class="navbar__dropdown" id="profileDropdown">
+            <div class="navbar__dropdown-name" id="userName">Pengguna</div>
+            <hr class="navbar__dropdown-divider">
+            <a href="views/AfterLogin/profile-page.html" class="navbar__dropdown-item"><i class="bi bi-person"></i> Profil Saya</a>
+            <a href="views/AfterLogin/keranjang.html" class="navbar__dropdown-item"><i class="bi bi-bag"></i> Keranjang</a>
+            <a href="views/AfterLogin/smart-pre-order.html" class="navbar__dropdown-item"><i class="bi bi-calendar2-check"></i> Smart Order</a>
+            <hr class="navbar__dropdown-divider">
+            <a href="#" class="navbar__dropdown-item navbar__dropdown-item--danger" onclick="handleLogout()"><i class="bi bi-box-arrow-right"></i> Logout</a>
+          </div>
+        </div>
+        <a href="views/AfterLogin/keranjang.html" class="navbar__cart" title="Keranjang">
+          <span class="navbar__icon-wrapper"><i class="bi bi-bag-fill"></i></span>
+          <span class="navbar__cart-badge" id="cartBadge" style="display:none;">0</span>
+        </a>
+      </div>
+
+      <div class="navbar__phone">
+        <span class="navbar__icon-wrapper"><i class="bi bi-telephone-fill"></i></span>
+        <div class="navbar__phone-number">
+          <span>Call Anytime</span>
+          +6287868889068
+        </div>
+      </div>
+
+      <button class="navbar__hamburger" id="hamburgerBtn"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<section class="hero home-hero overlay">
+  <img src="assets/img/homepage/hp-traktor-besar.png" alt="Hero Background" class="hero__bg">
+  <div class="hero__content animate-fadeInUp">
+  </div>
+  <div class="hero__scroll-dot"></div>
+</section>
+
+<section class="welcome-section" id="about">
+  <div class="container">
+    <div class="welcome-grid">
+      <div>
+        <p class="welcome-eyebrow">Tentang Kami</p>
+        <h2 class="welcome-title">Welcome to Dewy Bar!</h2>
+        <p class="welcome-text">
+          Dewy Bar adalah platform agritech Malang yang menghadirkan buah dan sayur segar langsung dari petani lokal ke dapur Anda. Kami percaya bahwa makanan sehat seharusnya mudah diakses oleh semua orang, terutama mahasiswa Malang Raya.
+        </p>
+        <p class="welcome-text">
+          Dengan sistem Smart Pre-Order kami, Anda dapat memesan lebih awal dan mendapatkan ongkir kolektif yang sangat terjangkau. Mulai hidup sehat hari ini!
+        </p>
+      </div>
+      <div class="welcome-img-grid">
+        <div class="welcome-img welcome-img--tall"><img src="assets/img/homepage/hp-petani-appel.png.png" alt="Pertanian Segar"></div>
+        <div class="welcome-img"><img src="assets/img/homepage/hp-traktor-pagi.png.png" alt="Produk Segar"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="offer-section">
+  <div class="container">
+    
+    <div class="offer-header">
+      <span class="offer-subtitle">Our Services</span>
+      <h2 class="offer-title">What We Offer</h2>
+    </div>
+
+    <div class="offer-grid">
+      
+      <div class="offer-product-card animate-fadeInUp">
+        <div class="offer-product-card__image-box">
+          <img src="assets/img/homepage/hp-card-pilbuah.png.png" alt="Multi-Variant Catalog">
+          <div class="offer-product-card__icon-badge">
+            <img src="assets/img/homepage/hp-traktor-icon (1).png" alt="Catalog Icon">
+          </div>
+        </div>
+        <div class="offer-product-card__content">
+          <h4 class="offer-product-card__title">Multi-Variant Catalog</h4>
+          <p class="offer-product-card__desc">Pilih nutrisimu dalam bentuk Utuh, Potong, atau Jus langsung dari katalog.</p>
+        </div>
+      </div>
+
+      <div class="offer-product-card animate-fadeInUp" style="animation-delay: 0.1s;">
+        <div class="offer-product-card__image-box">
+          <img src="assets/img/homepage/hp-card-sortir-buah.png.png" alt="Smart Pre-Order">
+          <div class="offer-product-card__icon-badge">
+            <img src="assets/img/homepage/hp-tanam-icon.png" alt="Pre-Order Icon">
+          </div>
+        </div>
+        <div class="offer-product-card__content">
+          <h4 class="offer-product-card__title">Smart Pre-Order</h4>
+          <p class="offer-product-card__desc">Atur jadwal sehatmu melalui kalender interaktif untuk pengiriman H-1 atau paket langganan mingguan.</p>
+        </div>
+      </div>
+
+      <div class="offer-product-card animate-fadeInUp" style="animation-delay: 0.2s;">
+        <div class="offer-product-card__image-box">
+          <img src="assets/img/homepage/hp-card-pegangsayur.png.png" alt="Jejak Petani">
+          <div class="offer-product-card__icon-badge">
+            <img src="assets/img/homepage/hp-product-icon.png" alt="Farmer Icon">
+          </div>
+        </div>
+        <div class="offer-product-card__content">
+          <h4 class="offer-product-card__title">Jejak Petani</h4>
+          <p class="offer-product-card__desc">Lihat profil lengkap dan lokasi kebun petani yang menanam buahmu.</p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<section class="cta-wrapper-section">
+  <div class="container">
+    
+    <div class="promo-image-grid">
+      <div class="promo-image-item animate-fadeInUp">
+        <img src="assets/img/homepage/card-yellow.png.png" alt="Promo Kuning" class="promo-img-fluid">
+      </div>
+
+      <div class="promo-image-item animate-fadeInUp" style="animation-delay: 0.15s;">
+        <img src="assets/img/homepage/card-green.png.png" alt="Promo Hijau" class="promo-img-fluid">
+      </div>
+    </div>
+
+    <div class="cta-banner-new">
+      <img src="assets/img/homepage/cta-banner.png" alt="CTA Background" class="cta-banner-new__bg">
+      <div class="cta-banner-new__overlay"></div>
+      <div class="cta-banner-new__content">
+        <div id="ctaActionContainer" class="cta-banner-new__btns">
+          <a href="views/BeforeLogin/login-page.html" class="btn-shop-now">Shop Now</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+       
+<section class="product-categories-section">
+  <div class="container">
+    
+    <div class="product-categories-header">
+      <span class="product-categories-subtitle">Special Offers</span>
+      <h2 class="product-categories-title">Our Product</h2>
+    </div>
+
+    <div class="product-categories-grid">
+      
+      <div class="category-item animate-fadeInUp">
+        <div class="category-item__image">
+          <img src="assets/img/homepage/hp-juices.png" alt="Juices">
+        </div>
+        <h4 class="category-item__name">Juices</h4>
+      </div>
+
+      <div class="category-item animate-fadeInUp" style="animation-delay: 0.1s;">
+        <div class="category-item__image">
+          <img src="assets/img/homepage/hp-smoothies.png" alt="Smoothies">
+        </div>
+        <h4 class="category-item__name">Smoothies</h4>
+      </div>
+
+      <div class="category-item animate-fadeInUp" style="animation-delay: 0.2s;">
+        <div class="category-item__image">
+          <img src="assets/img/homepage/hp-sliced fruit.png" alt="Sliced Fruit">
+        </div>
+        <h4 class="category-item__name">Sliced Fruit</h4>
+      </div>
+
+      <div class="category-item animate-fadeInUp" style="animation-delay: 0.3s;">
+        <div class="category-item__image">
+          <img src="assets/img/homepage/hp-salad.png" alt="Salad">
+        </div>
+        <h4 class="category-item__name">Salad</h4>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<section class="eco-banner">
+  <img src="assets/img/homepage/hp-eco.png" alt="Eco" class="eco-banner__bg">
+  <div class="container">
+  </div>
+</section>
+
+<div class="testimonial-promo-container">
+
+  <section class="testi-section">
+    <div class="testi-header">
+      <span class="testi-subtitle">Our Testimonials</span>
+      <h2 class="testi-title">What They Say</h2>
+    </div>
+    
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="testi-avatar-wrap">
+          <img src="assets/img/homepage/hp-testi-satu.png.png" alt="Rian" class="testi-card__avatar">
+          <div class="badge-dot"></div>
+        </div>
+        <div class="testi-card__content">
+          <p class="testi-card__text">Sejak ada Dewy Bar, urusan buah jadi gampang banget. Praktis tinggal makan, segar, dan harganya beneran pas buat dompet anak kos di Malang!</p>
+          <h4 class="testi-card__name">- Rian, Mahasiswa UB</h4>
+        </div>
+      </div>
+
+      <div class="testi-card">
+        <div class="testi-avatar-wrap">
+          <img src="assets/img/homepage/hp-testi-dua.png.png" alt="Sarah" class="testi-card__avatar">
+          <div class="badge-dot"></div>
+        </div>
+        <div class="testi-card__content">
+          <p class="testi-card__text">Suka banget fitur Jejak Petani-nya, jadi tahu asal apelku dari Poncokusumo. Sehat dapet, bantu petani lokal juga dapet!</p>
+          <h4 class="testi-card__name">- Sarah, Pekerja Muda</h4>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="promo-banner-flat">
+    <div class="promo-banner-container">
+      <img src="assets/img/homepage/hp-wheats.png.png" alt="Ready To Order" class="promo-flat-img">
+      
+      <a href="katalog.html" class="promo-clickable-link" title="Pergi ke Katalog">ORDER</a>
+    </div>
+  </section>
+
+</div>
+
+<section class="promo-banner">
+  <img src="assets/img/homepage/hp-cta-buah.png" alt="Promo" class="promo-banner__bg">
+  <div class="container">
+    <div class="promo-banner__content">
+      <span class="promo-banner__eyebrow">Ready To Order</span>
+      <h2 class="promo-banner__title">Yuk Pesan Sekarang!</h2>
+      <a href="views/BeforeLogin/login-page.html" class="btn btn-accent btn-lg">Pesan Sekarang</a>
+    </div>
+  </div>
+</section>
+
+<section class="contact-section" id="contact">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="contact-map">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63001.02060254167!2d112.5948!3d-7.9697!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd627c0b8b2a3b3%3A0x123456789!2sMalang%2C%20Jawa%20Timur!5e0!3m2!1sid!2sid!4v1234567890" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+      <div>
+        <h3 class="contact-form-title">Write a Message</h3>
+        <form class="contact-form" id="contactForm">
+          <div class="form-group">
+            <label class="form-label">Nama</label>
+            <input type="text" class="form-input" placeholder="Nama lengkap Anda">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Email</label>
+            <input type="email" class="form-input" placeholder="email@example.com">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Pesan</label>
+            <textarea class="form-input" rows="4" placeholder="Tulis pesan Anda..."></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary btn-lg" style="align-self:flex-start;">Kirim Pesan</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="footer-container"></div>
+
+<div class="toast-notif" id="toastNotif"><i class="bi bi-check-circle-fill"></i><span id="toastMsg"></span></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script src="javascript/cart.js"></script>
+<script src="javascript/navbar.js"></script>
+<script src="javascript/main.js"></script>
+<script src="javascript/auth.js"></script>
+
+<script>
+  (function () {
+    // 1. Ambil status login secara ketat
+    const loggedIn = localStorage.getItem('dewybar_logged_in') === 'true';
+    const userRaw  = localStorage.getItem('dewybar_user');
+    
+    // Ambil semua elemen DOM navbar
+    const loginBtns   = document.getElementById('loginBtns');
+    const afterActions  = document.getElementById('afterLoginActions');
+    const navAfterLinks = document.getElementById('navAfterLinks');
+
+    // 2. Proteksi Ganda: Jika status true tapi data user kosong, paksa ke status belum login
+    if (loggedIn && userRaw) {
+      // KONDISI: BENAR-BENAR SUDAH LOGIN
+      if (loginBtns) loginBtns.style.setProperty('display', 'none', 'important');
+      if (afterActions) afterActions.style.setProperty('display', 'flex', 'important');
+      if (navAfterLinks) navAfterLinks.style.setProperty('display', 'flex', 'important');
+      
+      // Pasang data pengguna ke navbar
+      try {
+        const user = JSON.parse(userRaw);
+        const nameEl = document.getElementById('userName');
+        if (nameEl && user.name) nameEl.textContent = user.name;
+        const avatarImg = document.querySelector('#userAvatar .navbar__avatar');
+        if (avatarImg && user.avatar) avatarImg.src = user.avatar;
+      } catch (e) { console.error("Gagal memuat data user", e); }
+
+    } else {
+      // KONDISI: PENGUNJUNG UMUM / BELUM AUTH (Sesuai mockup target kamu)
+      // Bersihkan sisa data lokal yang korup jika ada
+      localStorage.setItem('dewybar_logged_in', 'false');
+      
+      // Paksa sembunyikan semua fitur rahasia & munculkan tombol AUTH
+      if (loginBtns) loginBtns.style.setProperty('display', 'flex', 'important');
+      if (afterActions) afterActions.style.setProperty('display', 'none', 'important');
+      if (navAfterLinks) navAfterLinks.style.setProperty('display', 'none', 'important');
+    }
+  })();
+</script>
+
+</body>
+</html>

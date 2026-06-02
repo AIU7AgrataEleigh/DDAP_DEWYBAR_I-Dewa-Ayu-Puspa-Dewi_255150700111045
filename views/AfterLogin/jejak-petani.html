@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jejak Petani — Dewy Bar</title>
+  <link class="ui-theme" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Covered+By+Your+Grace&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../style/global.css">
+  <link rel="stylesheet" href="../../style/navbar.css">
+  <link rel="stylesheet" href="../../style/footer.css">
+  <link rel="stylesheet" href="../../style/katalog.css">
+  <link rel="stylesheet" href="../../style/pages.css">
+  <style>
+    /* ============================================================
+       NAVBAR OVERRIDE (STICKY FIXED & TRANSPARAN DI ATAS HERO)
+       ============================================================ */
+    .navbar {
+      position: fixed !important;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      background: transparent !important; 
+      box-shadow: none !important;
+      backdrop-filter: blur(4px); 
+      -webkit-backdrop-filter: blur(4px);
+    }
+
+    .navbar__menu-link, .navbar__phone-number, .navbar__dropdown-name {
+      color: #ffffff !important; 
+    }
+    
+    .navbar__social-circle {
+      background: rgba(255, 255, 255, 0.2) !important;
+      color: #ffffff !important;
+    }
+
+    .navbar__hamburger span {
+      background: #ffffff !important;
+    }
+    .navbar__icon-wrapper { color: #ffffff !important; }
+    .navbar__cart { color: #ffffff !important; }
+      width: 100%;
+      position: relative;
+      overflow: hidden;
+      line-height: 0;
+      background: #f8faf9;
+      padding-top: 0 !important; 
+    }
+    
+    .jp-hero-clean-img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* ============================================================
+       PERBAIKAN GESER KANAN & ANTI-NABRAK (PAS & BALANCED)
+       ============================================================ */
+    .jp-custom-badge-kuning {
+      background-color: #EEC044 !important;
+      color: #ffffff !important;
+      border-radius: 50px;
+      padding: 6px 18px;
+      font-size: 13px;
+      font-weight: 800;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px; 
+      border: none;
+      box-shadow: 0px 4px 10px rgba(238, 192, 68, 0.15);
+      
+      /* Menggeser badge daerah ke kanan agar lurus vertikal dengan konten utama */
+      margin-left: 28px !important; 
+    }
+
+    .katalog-scroll-container {
+      display: flex !important;
+      flex-wrap: nowrap !important;
+      overflow-x: auto !important;
+      gap: 20px !important;
+      
+      /* Memberikan ruang dalam di sebelah kiri agar kartu pertama tidak menempel screen */
+      padding-left: 28px !important;  
+      padding-right: 35px !important; 
+      padding-bottom: 15px !important;
+      
+      /* Mengunci snap-scroll pas di koordinat padding baru */
+      scroll-padding-left: 28px !important;
+      
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+      scroll-behavior: smooth;
+    }
+
+    /* Jarak vertikal antar susunan katalog */
+    .katalog-section {
+      margin-top: 0 !important;
+      margin-bottom: 30px !important; 
+      padding-top: 0 !important;
+      padding-bottom: 0 !important;
+    }
+
+    .jp-main-content-wrapper {
+      margin-top: 10px !important;
+    }
+
+    .farmer-premium-card {
+      flex: 0 0 auto !important;
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="mainNavbar">
+  <div class="navbar__inner">
+    
+    <a href="../../index.html" class="navbar__logo">
+      <img src="../../assets/svg/logo_dewy_bar_putih.svg.svg" alt="Dewy Bar" class="navbar__logo-img">
+    </a>
+
+    <div class="navbar__social-group">
+      <a href="https://www.twitter.com" class="navbar__social-circle" target="_blank" title="Twitter"><i class="bi bi-twitter-x"></i></a>
+      <a href="https://www.facebook.com" class="navbar__social-circle" target="_blank" title="Facebook"><i class="bi bi-facebook"></i></a>
+      <a href="https://www.linkedin.com" class="navbar__social-circle" target="_blank" title="LinkedIn"><i class="bi bi-linkedin"></i></a>
+      <a href="https://www.instagram.com" class="navbar__social-circle" target="_blank" title="Instagram"><i class="bi bi-instagram"></i></a>
+    </div>
+
+    <ul class="navbar__nav-links navbar__nav-links--static">
+      <li><a href="../../index.html" class="navbar__menu-link">Home</a></li>
+      <li><a href="../../index.html#about" class="navbar__menu-link">About</a></li>
+      <li><a href="../../index.html#contact" class="navbar__menu-link">Contact</a></li>
+    </ul>
+
+    <ul class="navbar__nav-links navbar__nav-links--features">
+      <li><a href="katalog-produk-mentah.html" class="navbar__menu-link">Katalog</a></li>
+      <li><a href="smart-pre-order.html" class="navbar__menu-link">Smart Order</a></li>
+      <li><a href="jejak-petani.html" class="navbar__menu-link navbar__menu-link--active">Jejak Petani</a></li>
+    </ul>
+
+    <div class="navbar__actions">
+      <div class="navbar__profile">
+        <div class="navbar__avatar-wrapper" id="userAvatar" onclick="toggleProfileDropdown()">
+          <img src="../../assets/img/homepage/logo_profile.img.png" alt="Profil" class="navbar__avatar">
+        </div>
+        <div class="navbar__dropdown" id="profileDropdown">
+          <div class="navbar__dropdown-name" id="userName">Pengguna</div>
+          <hr class="navbar__dropdown-divider">
+          <a href="profile-page.html" class="navbar__dropdown-item"><i class="bi bi-person"></i> Profil Saya</a>
+          <a href="keranjang.html" class="navbar__dropdown-item"><i class="bi bi-bag"></i> Keranjang</a>
+          <a href="smart-pre-order.html" class="navbar__dropdown-item"><i class="bi bi-calendar2-check"></i> Smart Order</a>
+          <hr class="navbar__dropdown-divider">
+          <a href="#" class="navbar__dropdown-item navbar__dropdown-item--danger" onclick="handleLogout()"><i class="bi bi-box-arrow-right"></i> Logout</a>
+        </div>
+      </div>
+
+      <a href="keranjang.html" class="navbar__cart" title="Keranjang">
+        <span class="navbar__icon-wrapper"><i class="bi bi-bag-fill"></i></span>
+        <span class="navbar__cart-badge" id="cartBadge" style="display:none;">0</span>
+      </a>
+
+      <div class="navbar__phone">
+        <span class="navbar__icon-wrapper"><i class="bi bi-telephone-fill"></i></span>
+        <span class="navbar__phone-number">+6287868889068</span>
+      </div>
+      
+      <button class="navbar__hamburger" id="hamburgerBtn">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO BANNER -->
+<section class="jp-hero-container">
+  <img src="../../assets/img/produk-petani/jp-hero.png" alt="Pahlawan Pangan Lokal" class="jp-hero-clean-img" onerror="this.src='../../assets/img/logo_profile.img.png'">
+</section>
+
+<!-- JUDUL UTAMA -->
+<div class="text-center mt-4 mb-3">
+  <span class="font-covered-grace">Plan it Specially</span>
+  <h2 class="katalog-section-title mb-0">Jejak Petani</h2>
+</div>
+
+<!-- CONTAINER UTAMA -->
+<main class="container px-3 jp-main-content-wrapper">
+  
+  <!-- SECTION 1: PONCOKUSUMO -->
+  <section class="katalog-section">
+    <div class="mb-2">
+      <div class="jp-custom-badge-kuning"><i class="bi bi-geo-alt-fill"></i> Poncokusumo</div>
+    </div>
+    <div class="katalog-scroll-container" id="gridPoncokusumo"></div>
+  </section>
+
+  <!-- SECTION 2: BATU -->
+  <section class="katalog-section">
+    <div class="mb-2">
+      <div class="jp-custom-badge-kuning"><i class="bi bi-geo-alt-fill"></i> Batu</div>
+    </div>
+    <div class="katalog-scroll-container" id="gridBatu"></div>
+  </section>
+
+  <!-- SECTION 3: KEPANJEN -->
+  <section class="katalog-section">
+    <div class="mb-2">
+      <div class="jp-custom-badge-kuning"><i class="bi bi-geo-alt-fill"></i> Kepanjen</div>
+    </div>
+    <div class="katalog-scroll-container" id="gridKepanjen"></div>
+  </section>
+
+  <!-- SECTION 4: DAU -->
+  <section class="katalog-section mb-4">
+    <div class="mb-2">
+      <div class="jp-custom-badge-kuning"><i class="bi bi-geo-alt-fill"></i> Dau</div>
+    </div>
+    <div class="katalog-scroll-container" id="gridDau"></div>
+  </section>
+  
+</main>
+
+<!-- FOOTER CONTAINER AUTOMATIC (Mengikuti Standard Global Katalog Mentah) -->
+<div id="footer-container"></div>
+
+<!-- TOAST NOTIFICATION -->
+<div class="toast-notif" id="toastNotif">
+  <i class="bi bi-check-circle-fill"></i>
+  <span id="toastMsg"></span>
+</div>
+
+<!-- SCRIPT DEPENDENCIES -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../../javascript/auth.js"></script>
+<script src="../../javascript/cart.js"></script>
+<script src="../../javascript/navbar.js"></script>
+<script src="../../javascript/katalog.js"></script>
+<script src="../../javascript/main.js"></script>
+
+<script>
+  if (typeof requireLogin === 'function') requireLogin();
+
+  // DATA SOURCE JEJAK PETANI
+  const MASTER_PETANI_DATA = [
+    { id: "petani-1", name: "Budi Santoso", lokasi: "Poncokusumo", img: "../../assets/img/petani/budi.png", crops: ["pisang.png", "apel.png", "stroberi.png"], wilayah: "poncokusumo" },
+    { id: "petani-2", name: "Pak Haji Rustam", lokasi: "Poncokusumo", img: "../../assets/img/petani/pak-haji.png", crops: ["mangga.png", "alpukat.png"], wilayah: "poncokusumo" },
+    { id: "petani-3", name: "Sari Handayani", lokasi: "Poncokusumo", img: "../../assets/img/petani/handayani.png", crops: ["stroberi.png", "naga.png"], wilayah: "poncokusumo" },
+    { id: "petani-4", name: "Mang Dadang", lokasi: "Poncokusumo", img: "../../assets/img/petani/dadang.png", crops: ["pisang.png", "pepaya.png"], wilayah: "poncokusumo" },
+    { id: "petani-5", name: "Fajar Hidayat", lokasi: "Batu", img: "../../assets/img/petani/fajar.png", crops: ["pisang.png", "stroberi.png"], wilayah: "batu" },
+    { id: "petani-6", name: "Bli Wayan", lokasi: "Batu", img: "../../assets/img/petani/bli.png", crops: ["apel.png", "jeruk.png"], wilayah: "batu" },
+    { id: "petani-7", name: "Cak Imron", lokasi: "Batu", img: "../../assets/img/petani/imron.png", crops: ["semangka.png", "melon.png"], wilayah: "batu" },
+    { id: "petani-8", name: "Martha Sitorus", lokasi: "Batu", img: "../../assets/img/petani/martha.png", crops: ["apel.png"], wilayah: "batu" },
+    { id: "petani-9", name: "Siti Aisyah", lokasi: "Kepanjen", img: "../../assets/img/petani/siti.png", crops: ["pir.png"], wilayah: "kepanjen" },
+    { id: "petani-10", name: "Pak Slamet", lokasi: "Kepanjen", img: "../../assets/img/petani/pak-slamet.png", crops: ["timun.png", "selada.png"], wilayah: "kepanjen" },
+    { id: "petani-11", name: "Kang Asep", lokasi: "Kepanjen", img: "../../assets/img/petani/kang-asep.png", crops: ["jagung.png", "tomat.png"], wilayah: "kepanjen" },
+    { id: "petani-12", name: "Ibu Ni Luh", lokasi: "Kepanjen", img: "../../assets/img/petani/ibu-ni-luh.png", crops: ["bayam.png", "brokoli.png"], wilayah: "kepanjen" },
+    { id: "petani-13", name: "Citra Lestari", lokasi: "Dau", img: "../../assets/img/petani/citra.png", crops: ["labu.png", "brokoli.png"], wilayah: "dau" },
+    { id: "petani-14", name: "Pak Mansur", lokasi: "Dau", img: "../../assets/img/petani/pak-mansyur.png", crops: ["wortel.png", "bayam.png"], wilayah: "dau" },
+    { id: "petani-15", name: "Pak Dedi", lokasi: "Dau", img: "../../assets/img/petani/pak-dedi.png", crops: ["brokoli.png", "wortel.png"], wilayah: "dau" },
+    { id: "petani-16", name: "Mas Bayu", lokasi: "Dau", img: "../../assets/img/petani/mas-bayu.png", crops: ["jagung.png", "tomat.png"], wilayah: "dau" }
+  ];
+
+  function renderFarmerCard(farmer) {
+    const cropsHtml = farmer.crops.map(crop => `
+      <div class="farmer-crop-direct">
+        <img src="../../assets/img/produk-petani/${crop}" alt="Crop" onerror="this.src='../../assets/img/logo_profile.img.png'">
+      </div>
+    `).join('');
+
+    return `
+      <div class="farmer-premium-card" onclick="goToFarmerDetail('${farmer.id}')">
+        <div class="farmer-avatar-wrap">
+          <img class="farmer-avatar" src="${farmer.img}" alt="${farmer.name}" onerror="this.src='../../assets/img/logo_profile.img.png'">
+          <div class="farmer-badge-home-accent">
+            <i class="bi bi-house-door-fill" style="color: #49A760; font-size: 14px;"></i>
+          </div>
+        </div>
+
+        <div class="farmer-info-block">
+          <p class="farmer-card-name">${farmer.name}</p>
+          <p class="farmer-card-loc">${farmer.lokasi}</p>
+        </div>
+
+        <div class="farmer-products-label">
+          <i class="bi bi-patch-check-fill" style="color:#ffffff;"></i>
+          <span>Products</span>
+        </div>
+
+        <div class="farmer-mini-crops">
+          ${cropsHtml}
+        </div>
+
+        <button class="farmer-action-wide-btn">
+          LIHAT DETAIL PRODUK
+        </button>
+      </div>
+    `;
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const regions = ["poncokusumo", "batu", "kepanjen", "dau"];
+    regions.forEach(reg => {
+      const targetGrid = document.getElementById(`grid${reg.charAt(0).toUpperCase() + reg.slice(1)}`);
+      if (targetGrid) {
+        const filteredFarmers = MASTER_PETANI_DATA.filter(p => p.wilayah === reg);
+        targetGrid.innerHTML = filteredFarmers.length
+          ? filteredFarmers.map(renderFarmerCard).join('')
+          : '<div style="color:#888;text-align:center;padding:12px 0;">Tidak ada data petani untuk wilayah ini.</div>';
+      }
+    });
+  });
+
+  function goToFarmerDetail(id) {
+    window.location.href = `profil-petani.html?id=${id}`;
+  }
+</script>
+</body>
+</html>
