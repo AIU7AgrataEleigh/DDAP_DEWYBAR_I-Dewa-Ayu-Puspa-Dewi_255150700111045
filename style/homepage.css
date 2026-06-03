@@ -805,3 +805,112 @@
     align-items: flex-start;
   }
 }
+
+/* ============================================================
+   DEWY BAR — WELCOME SECTION (HIFI FIX)
+   ============================================================ */
+
+/* Pastikan font Covered By Your Grace di-import jika belum ada di global */
+@import url('https://fonts.googleapis.com/css2?family=Covered+By+Your+Grace&display=swap');
+
+.welcome-section {
+  padding: 80px 0;
+  background-color: #ffffff;
+}
+
+/* Layout Utama: Memisahkan Teks (Kiri) dan Gambar (Kanan) */
+.welcome-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 50px;
+  align-items: center;
+}
+
+/* --- Penataan Tipografi (Welcome Section) --- */
+.welcome-eyebrow {
+  font-family: 'Covered By Your Grace', cursive;
+  font-size: 1.8rem; /* Diperkecil dari sebelumnya (2.2rem) agar terlihat pas */
+  margin-bottom: 5px;
+  line-height: 1.2;
+  text-transform: none; /* Memastikan teks TIDAK dipaksa menjadi kapital semua */
+  letter-spacing: -0.5px; /* Merampingkan jarak antar huruf agar terlihat agak ramping */
+  font-weight: 400; /* Menggunakan ketebalan bawaan font yang ramping */
+}
+
+/* Pewarnaan Spesifik */
+.welcome-eyebrow--yellow {
+  color: #E6B930; /* Kuning aksen */
+}
+
+.welcome-eyebrow--green {
+  color: #4BAF47; /* Hijau Dewy Bar */
+  margin-top: 25px;
+}
+
+.welcome-title {
+  font-size: 2.8rem;
+  font-weight: 800;
+  color: #1A1A1A;
+  margin-bottom: 20px;
+}
+
+.welcome-text {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #4D4D4D;
+  margin-bottom: 15px;
+}
+
+.welcome-subtext {
+  font-size: 0.95rem;
+  color: #7A7A7A;
+}
+
+/* --- Penataan Komposisi Gambar (Hifi Style) --- */
+.welcome-gallery {
+  display: flex;
+  align-items: flex-end; /* Menjaga bagian bawah gambar sejajar */
+  gap: 20px;
+}
+
+.welcome-img-wrap {
+  overflow: hidden;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.welcome-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Gambar Pria Memegang Apel (Dibuat Lebih Kecil) */
+.img-farmer {
+  width: 42%;
+  height: 280px; 
+}
+
+/* Gambar Traktor Pagi (Mendominasi / Lebih Besar) */
+.img-tractor {
+  width: 58%;
+  height: 360px;
+}
+
+/* Responsif untuk Smartphone / Tablet */
+@media (max-width: 991px) {
+  .welcome-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .welcome-gallery {
+    justify-content: center;
+  }
+  .img-farmer {
+    height: 220px;
+  }
+  .img-tractor {
+    height: 280px;
+  }
+}
