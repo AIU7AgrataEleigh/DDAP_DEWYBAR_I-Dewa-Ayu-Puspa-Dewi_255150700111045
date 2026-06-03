@@ -914,3 +914,130 @@
     height: 280px;
   }
 }
+
+/* ============================================================
+   DEWY BAR — MEET OUR TEAM SECTION
+   ============================================================ */
+
+.team-section {
+  padding: 60px 0 100px 0; /* Padding bawah agak tebal karena efek melayang */
+  background-color: #ffffff;
+}
+
+/* Header Penataan */
+.team-header {
+  margin-bottom: 50px;
+}
+
+.team-subtitle {
+  font-family: 'Covered By Your Grace', cursive;
+  font-size: 1.8rem;
+  color: #E6B930; /* Kuning ramping */
+  display: block;
+  margin-bottom: 5px;
+}
+
+.team-title {
+  font-size: 2.8rem;
+  font-weight: 800;
+  color: #1A1A1A;
+}
+
+/* Grid Layout 4 Kolom */
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+}
+
+/* Base Card Container */
+.team-card {
+  position: relative; /* Menjadi patokan utama untuk koordinat elemen absolute */
+  margin-bottom: 40px; /* Memberikan ruang ekstra di bawah untuk area melayang */
+}
+
+/* Bingkai Foto */
+.team-card__img-box {
+  width: 100%;
+  height: 320px;
+  overflow: hidden;
+  border-radius: 12px; /* Melengkung halus seperti di gambar */
+}
+
+.team-card__img-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* --- Rectangle Putih Informasi --- */
+.team-card__badge {
+  position: absolute;
+  bottom: -25px;   
+  right: -10px;    /* Geser sedikit ke kanan melewati batas foto */
+  left: 20px;      
+  background: #ffffff;
+  padding: 12px 15px;
+  border-radius: 12px; /* Membuat sudut melengkung halus */
+  display: flex;
+  align-items: center;
+  gap: 15px; /* Jarak antara kotak hijau dan area teks */
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  z-index: 2;
+}
+
+/* --- Container Khusus Penjinak Ukuran SVG --- */
+.team-card__svg-container {
+  width: 45px;        /* Mengunci lebar kotak hijau */
+  height: 45px;       /* Mengunci tinggi kotak hijau */
+  flex-shrink: 0;     /* Memaksa kontainer tidak boleh mengecil/gepeng */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* --- Elemen Gambar SVG di Dalam Kontainer --- */
+.team-card__svg-icon {
+  width: 100%;        /* Mengikuti lebar container (45px) */
+  height: 100%;       /* Mengikuti tinggi container (45px) */
+  object-fit: contain;/* Menjaga rasio icon di dalam kotak agar tidak terdistorsi */
+  display: block;
+}
+
+/* --- Area Informasi Nama & Role --- */
+.team-card__info {
+  flex-grow: 1;
+  overflow: hidden;
+}
+
+.team-card__name {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #1A1A1A;
+  margin: 0 0 2px 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; /* Nama terpotong rapi dengan "..." jika terlalu panjang */
+}
+
+.team-card__role {
+  font-size: 0.75rem;
+  color: #999999;
+  margin: 0;
+  text-align: right; /* Tulisan "Builder" rata kanan sesuai HiFi */
+}
+
+/* Responsif Mobile Grid */
+@media (max-width: 991px) {
+  .team-grid {
+    grid-template-columns: repeat(2, 1fr); /* Tampilan tablet 2 kolom */
+    gap: 40px 20px;
+  }
+}
+
+@media (max-width: 576px) {
+  .team-grid {
+    grid-template-columns: 1fr; /* Tampilan hp 1 kolom semata */
+  }
+}
