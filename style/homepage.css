@@ -456,17 +456,17 @@
 }
 
 .offer-subtitle {
-  font-family: var(--font-display), cursive, sans-serif;
-  font-size: 18px;
-  color: #b5c45b; /* Warna hijau muda kecokelatan sesuai mockup gambar 1 */
+   font-family: 'Covered By Your Grace', cursive;
+  font-size: 1.8rem;
+  color: #EEC044; /* Warna hijau muda kecokelatan sesuai mockup gambar 1 */
   display: block;
   margin-bottom: 5px;
 }
 
 .offer-title {
-  font-size: 38px;
-  font-weight: 700;
-  color: #1f1f1f;
+  font-size: 2.8rem;
+  font-weight: 800;
+  color: #1A1A1A;
   margin: 0;
 }
 
@@ -604,11 +604,17 @@
 /* ── BANNER UTAMA (Di bawah gambar melayang) ── */
 .cta-banner-new {
   position: relative;
-  border-radius: 4%;
+  border-radius: 24px; /* Menyesuaikan kelengkungan border banner */
   margin: 40px auto 0 auto;
-  padding: 120px 40px 80px 40px; /* Atas longgar agar tidak tertutup gambar promo */
+  min-height: 280px;   /* Mengunci tinggi minimal spanduk agar proporsional */
   overflow: hidden;
   text-align: center;
+  
+  /* MENGGUNAKAN FLEXBOX UNTUK MENDORONG TOMBOL KE BAWAH */
+  display: flex;
+  align-items: flex-end;    /* Memaksa konten di dalamnya bersandar di bagian bawah */
+  justify-content: center;  /* Tetap rata tengah secara horizontal */
+  padding-bottom: 45px;     /* Mengatur jarak tombol dari batas bawah gambar (sesuai target mockup) */
 }
 
 .cta-banner-new__bg {
@@ -617,19 +623,16 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  filter: brightness(0.85) !important;
 }
 
-.cta-banner-new__overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.45); /* Mengatur kegelapan backdrop banner */
-  z-index: 1;
-}
-
+/* Container Konten Tombol */
 .cta-banner-new__content {
   position: relative;
   z-index: 2;
-  color: #ffffff;
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 .cta-banner-new__eyebrow {
@@ -644,29 +647,38 @@
 .cta-banner-new__title {
   font-size: 36px;
   font-weight: 800;
+  color: #ffffff;
   line-height: 1.3;
-  margin-bottom: 35px;
+  margin: 0;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3); /* Menjaga teks tetap terbaca tajam */
+}
+
+/* Container Tombol */
+.cta-banner-new__btns {
+  display: flex;
+  justify-content: center;
+  width: auto;
 }
 
 /* ── TOMBOL HIJAU BULAT LEMBUT (SHOP NOW) ── */
 .btn-shop-now {
-  background-color: #7BB343 !important;
+  background-color: #55B343 !important; /* Warna hijau disamakan dengan mockup target */
   color: #ffffff !important;
-  font-weight: 700;
-  font-size: 16px;
-  padding: 14px 45px;
+  font-weight: 600;
+  font-size: 15px;
+  padding: 12px 40px;
   border-radius: 30px;
   border: none;
   transition: all 0.3s ease;
   display: inline-block;
   text-decoration: none;
-  box-shadow: 0 8px 20px rgba(123, 179, 67, 0.3);
+  box-shadow: 0 4px 15px rgba(85, 179, 67, 0.3);
 }
 
 .btn-shop-now:hover {
-  background-color: #659635 !important;
+  background-color: #469c36 !important;
   transform: translateY(-2px);
-  box-shadow: 0 10px 25px rgba(123, 179, 67, 0.4);
+  box-shadow: 0 6px 20px rgba(85, 179, 67, 0.4);
 }
 
 /* Responsive Breakpoints saat Layar HP / Tablet */
@@ -1039,5 +1051,91 @@
 @media (max-width: 576px) {
   .team-grid {
     grid-template-columns: 1fr; /* Tampilan hp 1 kolom semata */
+  }
+}
+
+/* ==========================================================================
+   CSS UNTUK "PROMO BANNER DENGAN BUTTON DI TENGAH"
+   ========================================================================== */
+
+/* --- Wrapper Utama Seksi --- */
+.promo-banner-section {
+  padding: 60px 0; /* Memberikan ruang jarak atas dan bawah antar seksi */
+  width: 100%;
+}
+
+/* --- Kontainer Utama Spanduk --- */
+.promo-banner-new {
+  position: relative;
+  width: 100%;
+  
+  /* MENGUNCI TINGGI IDEAL BANNER AGAR TIDAK PENDEK/GEPENG */
+  height: 240px; 
+  
+  border-radius: 24px; /* Sudut melengkung halus sesuai gambar */
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  
+  /* Menggunakan Flexbox untuk centering tombol */
+  display: flex;
+  align-items: center;     /* Tengah secara vertikal */
+  justify-content: center;  /* Tengah secara horizontal */
+}
+
+/* --- Gambar Latar Belakang Banner --- */
+.promo-banner-new__bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Menjamin gambar terbentang penuh tanpa merusak aspek rasio */
+  z-index: 1;
+}
+
+/* --- Container Konten --- */
+.promo-banner-new__content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  
+  /* TURUN SEDIKIT: Tambahkan padding-top untuk menurunkan posisi tombol */
+  padding-top: 35px; 
+}
+
+/* ── KUSTOMISASI TOMBOL GREEN "ORDER" ── */
+.btn-order-now {
+  background-color: #55B343 !important; /* Hijau segar khas Dewy Bar */
+  color: #ffffff !important;
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.5px;
+  padding: 12px 45px;
+  border-radius: 30px; /* Membuat bentuk tombol oval/lonjong sempurna */
+  border: none;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(85, 179, 67, 0.3);
+}
+
+.btn-order-now:hover {
+  background-color: #469c36 !important;
+  transform: translateY(-2px); /* Efek mengangkat sedikit saat di-hover */
+  box-shadow: 0 6px 20px rgba(85, 179, 67, 0.4);
+}
+
+/* ── RESPONSIVE UNTUK SMARTPHONE / TABLET ── */
+@media (max-width: 768px) {
+  .promo-banner-new {
+    height: 160px; /* Menyesuaikan tinggi banner saat di layar HP agar proporsional */
+  }
+  .promo-banner-new__content {
+    padding-top: 20px; /* Sesuaikan jarak turun tombol di mobile */
+  }
+  .btn-order-now {
+    padding: 8px 30px;
+    font-size: 12px;
   }
 }
