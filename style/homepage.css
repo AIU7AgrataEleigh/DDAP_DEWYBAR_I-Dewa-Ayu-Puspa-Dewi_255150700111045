@@ -510,7 +510,7 @@
 
 .form-input-new:focus {
   outline: none;
-  border-color: #55B343; /* Menyala hijau saat diketik */
+  border-color: #55B343; /* Menyala hijau saat diketik */o
   box-shadow: 0 4px 12px rgba(85, 179, 67, 0.08);
 }
 
@@ -540,33 +540,48 @@
 }
 
 /* ── RESPONSIVE KHUSUS SEKSI KONTAK (Ditaruh di bawah) ── */
-@media (max-width: 992px) {
-  .contact-card-wrapper {
-    grid-template-columns: 1fr; /* Berubah menjadi tumpuk atas-bawah */
-    min-height: auto;           /* KUNCI 1: Melepas kunci tinggi minimum di layar kecil */
-    height: auto;               /* KUNCI 2: Memaksa tinggi kontainer mengikuti konten asli */
-  }
-  
-  .contact-map-block {
-    position: relative;         /* KUNCI 3: Mengubah absolute menjadi relative di mobile */
-    height: 350px;              /* Memberikan tinggi statis yang pasti untuk peta di HP */
-    width: 100%;
-  }
+/* --- Perbaikan Struktur Utama Kontak --- */
+.contact-section {
+  padding: 80px 0;
+  background-color: #ffffff;
+  clear: both; /* Memastikan tidak ada efek melayang (float) yang merusak footer */
+}
 
-  .contact-map-block iframe {
-    position: relative;         /* Mengikuti induknya agar tidak melayang bebas */
-    width: 100%;
-    height: 100%;
-  }
+.contact-card-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  background-color: #FAF8F2;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.04);
   
-  .contact-form-block {
-    padding: 40px 30px;
-  }
-  
-  .form-row-twin {
-    grid-template-columns: 1fr; /* Nama dan Email menumpuk vertikal */
-    gap: 15px;
-  }
+  /* KUNCI UTAMA: Menggunakan min-height murni (bukan height statis) 
+     agar kontainer memiliki tinggi nyata yang terbaca oleh footer */
+  min-height: 550px; 
+  height: auto;
+}
+
+/* ── SISI KIRI: Google Maps ── */
+.contact-map-block {
+  width: 100%;
+  /* Menghapus position absolute dari pembungkus utama di desktop 
+     agar tinggi min-height dari induknya terbagi adil */
+  display: flex; 
+}
+
+.contact-map-block iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  align-self: stretch; /* Memaksa iframe memenuhi tinggi grid secara vertikal */
+}
+
+/* ── SISI KANAN: Form Isian ── */
+.contact-form-block {
+  padding: 50px 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 /* --- RESPONSIVE --- */
