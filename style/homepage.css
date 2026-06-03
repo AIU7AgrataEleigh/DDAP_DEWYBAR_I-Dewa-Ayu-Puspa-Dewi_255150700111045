@@ -412,13 +412,162 @@
   }
 }
 
-/* --- CONTACT SECTION --- */
-.contact-section { padding: var(--sp-20) 0; background: #fff; }
-.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-16); align-items: start; }
-.contact-map { border-radius: var(--radius-lg); overflow: hidden; height: 300px; box-shadow: var(--shadow-md); }
-.contact-map iframe { width: 100%; height: 100%; border: 0; }
-.contact-form-title { font-size: var(--fs-xl); font-weight: var(--fw-extrabold); margin-bottom: var(--sp-6); }
-.contact-form { display: flex; flex-direction: column; gap: var(--sp-4); }
+/* ==========================================================================
+   SPECIAL ADJUSTMENT: CONTACT SECTION & GOOGLE MAPS (SESUAI HIFI)
+   ========================================================================== */
+
+.contact-section {
+  padding: 80px 0;
+  background-color: #ffffff; /* Memastikan latar luar tetap bersih */
+}
+
+/* Card Wrapper: Menyatukan Maps (Kiri) & Form (Kanan) dengan Background Krem */
+.contact-card-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr; /* Pembagian porsi seimbang antara maps dan form */
+  background-color: #FAF8F2;        /* Background krem lembut sesuai HiFi */
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.04);
+  min-height: 520px;                /* Mengunci tinggi minimum agar terlihat elegan */
+}
+
+/* ── SISI KIRI: Google Maps Memanjang Sempurna ke Bawah mengikuti tinggi form ── */
+.contact-map-block {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.contact-map-block iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* ── SISI KANAN: Form Isian ── */
+.contact-form-block {
+  padding: 50px 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Teks kuning tulisan tangan paling atas */
+.contact-subtitle {
+  font-family: 'Covered By Your Grace', cursive;
+  font-size: 28px;
+  color: #E6B930; /* Warna aksen kuning khas */
+  margin-bottom: 2px;
+  letter-spacing: -0.5px;
+}
+
+.contact-form-title {
+  font-size: 36px;
+  font-weight: 800;
+  color: #1A1A1A;
+  margin-top: 0;
+  margin-bottom: 30px;
+}
+
+.contact-form-new {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* KUNCI: Membuat baris input Nama & Email sejajar horizontal ke samping */
+.form-row-twin {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.form-group-new {
+  width: 100%;
+}
+
+/* Input minimalis warna putih bersih */
+.form-input-new {
+  width: 100%;
+  padding: 16px 20px;
+  background-color: #ffffff;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  color: #333333;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+}
+
+.form-input-new::placeholder {
+  color: #A0A0A0;
+}
+
+.form-input-new:focus {
+  outline: none;
+  border-color: #55B343; /* Menyala hijau saat diketik */
+  box-shadow: 0 4px 12px rgba(85, 179, 67, 0.08);
+}
+
+.textarea-new {
+  resize: none;
+}
+
+/* Tombol Kirim Rata Kiri Mandiri */
+.btn-send-message {
+  background-color: #55B343 !important; /* Hijau solid khas Dewy Bar */
+  color: #ffffff !important;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  padding: 14px 40px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  align-self: flex-start; /* Mengunci tombol di sebelah kiri bawah */
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(85, 179, 67, 0.2);
+}
+
+.btn-send-message:hover {
+  background-color: #469c36 !important;
+  transform: translateY(-2px);
+}
+
+/* ── RESPONSIVE KHUSUS SEKSI KONTAK (Ditaruh di bawah) ── */
+@media (max-width: 992px) {
+  .contact-card-wrapper {
+    grid-template-columns: 1fr; /* Berubah menjadi tumpuk atas-bawah */
+    min-height: auto;           /* KUNCI 1: Melepas kunci tinggi minimum di layar kecil */
+    height: auto;               /* KUNCI 2: Memaksa tinggi kontainer mengikuti konten asli */
+  }
+  
+  .contact-map-block {
+    position: relative;         /* KUNCI 3: Mengubah absolute menjadi relative di mobile */
+    height: 350px;              /* Memberikan tinggi statis yang pasti untuk peta di HP */
+    width: 100%;
+  }
+
+  .contact-map-block iframe {
+    position: relative;         /* Mengikuti induknya agar tidak melayang bebas */
+    width: 100%;
+    height: 100%;
+  }
+  
+  .contact-form-block {
+    padding: 40px 30px;
+  }
+  
+  .form-row-twin {
+    grid-template-columns: 1fr; /* Nama dan Email menumpuk vertikal */
+    gap: 15px;
+  }
+}
 
 /* --- RESPONSIVE --- */
 @media (max-width: 992px) {
