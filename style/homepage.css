@@ -111,19 +111,18 @@
 }
 
 .product-categories-subtitle {
-  font-family: var(--font-display), cursive, sans-serif;
-  font-size: 18px;
-  color: #7BB343; /* Warna hijau khas Dewy Bar */
+  font-family: 'Covered By Your Grace', cursive;
+  font-size: 1.8rem;
+  color: #EEC044; /* Warna hijau muda kecokelatan sesuai mockup gambar 1 */
   display: block;
   margin-bottom: 5px;
 }
 
 .product-categories-title {
-  font-size: 36px;
-  font-weight: 700;
-  color: #1f1f1f;
-  position: relative;
-  display: inline-block;
+  font-size: 2.8rem;
+  font-weight: 800;
+  color: #1A1A1A;
+  margin: 0;
 }
 
 /* Garis dekorasi hijau kecil di bawah tulisan Our Product */
@@ -266,20 +265,18 @@
 }
 
 .testi-subtitle {
-  font-family: var(--font-display), cursive, sans-serif;
-  font-size: 18px;
-  color: #b5c45b;
+  font-family: 'Covered By Your Grace', cursive;
+  font-size: 1.8rem;
+  color: #EEC044; /* Warna hijau muda kecokelatan sesuai mockup gambar 1 */
   display: block;
   margin-bottom: 5px;
 }
 
 .testi-title {
-  font-size: 38px;
-  font-weight: 700;
-  color: #1f1f1f;
+  font-size: 2.8rem;
+  font-weight: 800;
+  color: #1A1A1A;
   margin: 0;
-  position: relative;
-  display: inline-block;
 }
 
 /* Garis dekorasi hijau kecil di bawah tulisan What They Say */
@@ -510,8 +507,8 @@
 
 .form-input-new:focus {
   outline: none;
-  border-color: #55B343; /* Menyala hijau saat diketik */o
-  box-shadow: 0 4px 12px rgba(85, 179, 67, 0.08);
+  border-color: #55B343; /* Menyala hijau saat diketik */
+  box-shadow: 4px 12px rgba(85, 179, 67, 0.08);
 }
 
 .textarea-new {
