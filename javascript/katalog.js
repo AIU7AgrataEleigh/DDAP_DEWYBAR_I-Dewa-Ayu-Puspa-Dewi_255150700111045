@@ -313,4 +313,12 @@ document.addEventListener('DOMContentLoaded', () => {
   setupFarmerButton();
 });
 
-
+// Tambahkan fungsi ini di javascript/katalog.js untuk menangani klik detail petani
+function goToFarmerDetail(id) {
+  if (!id) {
+    console.warn("ID Petani tidak ditemukan!");
+    return;
+  }
+  // Alihkan ke halaman detail petani yang kamu tuju (bisa disesuaikan nama filenya)
+  window.location.href = `profil-petani.html?id=${id}`;
+}
